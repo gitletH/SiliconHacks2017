@@ -1,5 +1,12 @@
-var express = require('express');
-var path = require('path');
-var app = express();
-app.use(express.static(path.join(__dirname, 'public')));
-app.listen(3000);
+var express = require('express'),
+    app = express(),
+    port = process.env.PORT || 3000,
+    bodyParser = require('body-parser');
+app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.json());
+var routes = require('./api/routes/routes.js');
+routes(app);
+
+app.listen(port);
+
+console.log("working on 3000");

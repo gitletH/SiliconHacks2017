@@ -33,19 +33,19 @@
                     </h1>
                 <div class="login-form">
                   <p class="control has-icon has-icon-right">
-                    <input class="input email-input" type="text" placeholder="jsmith@example.org">
+                    <input id="username" class="input email-input" type="text" placeholder="jsmith@example.org">
                     <span class="icon user">
                           <i class="fa fa-user"></i>
                         </span>
                   </p>
                   <p class="control has-icon has-icon-right">
-                    <input class="input password-input" type="password" placeholder="●●●●●●●">
+                    <input id="password" class="input password-input" type="password" placeholder="●●●●●●●">
                     <span class="icon user">
                           <i class="fa fa-lock"></i>
                         </span>
                   </p>
                   <p class="control login">
-                    <button class="button is-success is-outlined is-large is-fullwidth">Login</button>
+                    <button onclick="javascript:login()" class="button is-success is-outlined is-large is-fullwidth">Login</button>
                   </p>
                 </div>
                 <div class="section forgot-password">
@@ -63,11 +63,12 @@
   </div>
 
   <script type="text/javascript">
-  var isToggled = false;
+    var isToggled = false;
+    var serverUrl = "http://localhost:3000/user";
     /* Open the sidenav */
     function toggle() {
       console.log(isToggled)
-      if(isToggled){
+      if (isToggled) {
         isToggled = false;
         document.getElementById("login-form").style.right = "-100%";
       } else {
@@ -76,6 +77,34 @@
       }
     }
 
+    function login() {
+      var client = new HttpClient();
+      var params = "/";
+      params += document.getElementById('username').value;
+      params += "/"
+      params += document.getElementById('password').value;
+      console.log(params);
+      client.get(serverUrl + params, function(data) {
+        console.log("success!");
+      })
+    }
+
+    var HttpClient = function() {
+      this.get = function(aUrl, callback) {
+        var xhr = new XMLHttpRequest();
+        xhr.open("GET", aUrl, true);
+        xhr.responseType = 'json';
+        xhr.onload = function() {
+          var status = xhr.status;
+          if (status == 200) {
+            callback(null, xhr.response);
+          } else {
+            callback(status);
+          }
+        };
+        xhr.send();
+      }
+    }
 
     particlesJS("particles-js", {
       "particles": {

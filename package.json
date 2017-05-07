@@ -15,5 +15,10 @@
   "bugs": {
     "url": "https://github.com/maitianth/SiliconHacks2017/issues"
   },
-  "homepage": "https://github.com/maitianth/SiliconHacks2017#readme"
+  "homepage": "https://github.com/maitianth/SiliconHacks2017#readme",
+  "dependencies": {
+    "body-parser": "^1.17.1",
+    "cloudant": "^1.7.1",
+    "express": "^4.15.2"
+  }
 }
