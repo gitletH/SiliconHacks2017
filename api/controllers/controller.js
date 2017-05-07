@@ -14,6 +14,7 @@ var personality_insights = new PersonalityInsightsV3({
   version_date: '2017-12-31'
 });
 
+<<<<<<< HEAD
 var LanguageTranslatorV2 = require('watson-developer-cloud/language-translator/v2');
 var language_translator = new LanguageTranslatorV2({
   username: "93e6cb64-66d2-4cc0-8985-820705f4a9e7",
@@ -22,6 +23,9 @@ var language_translator = new LanguageTranslatorV2({
 });
 
 var twitter = require('twitter.js');
+=======
+var twitter = require('./twitter.js');
+>>>>>>> ea22284637ebe0ade94b3731194e1c13fed54105
 
 var vQue = [];
 var tQue = [];
@@ -62,7 +66,7 @@ exports.get_user = function(req, res) {
 
 //
 exports.get_match_video = function(req, res) {
-  
+
 if (vQue.length === 0)
 {
   var usr = req.body.user;
@@ -137,6 +141,7 @@ function process(response) {
   }
   return hobbies;
 }
+
 
 exports.translate = function(req, res){
   data = req.body;
