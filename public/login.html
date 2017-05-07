@@ -1,84 +1,86 @@
 <!DOCTYPE html>
 <html>
 
-<head>
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
-  <link rel="stylesheet" id="bulma" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.3.2/css/bulma.min.css" />
-  <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/js-cookie/2.1.4/js.cookie.min.js"></script>
-  <link rel="stylesheet" type="text/css" href="./css/login.css">
-</head>
+  <head>
+    <meta charset="UTF-8">
 
-<body>
-  <!-- particles.js container -->
-  <div id="particles-js"></div>
-  <img id="globe" src="./static/globe.png" alt="" onclick="javascript:toggle()">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+    <link rel="stylesheet" id="bulma" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.3.2/css/bulma.min.css" />
+    <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/js-cookie/2.1.4/js.cookie.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="./css/login.css">
+  </head>
+
+  <body>
+    <!-- particles.js container -->
+    <div id="particles-js"></div>
+    <img id="globe" src="./static/globe.png" alt="" onclick="javascript:toggle()">
 
 
-  <div id="login-form" class="login-wrapper columns sidenav">
-    <div class="column is-9 is-hidden-mobile hero-banner"></div>
-    <div class="column is-3">
-      <section class="hero is-fullheight">
-        <div class="hero-heading">
-          <div class="section has-text-centered">
-            <img src="./static/logo.png" alt="Bulma logo" width="150px">
+    <div id="login-form" class="login-wrapper columns sidenav">
+      <div class="column is-9 is-hidden-mobile hero-banner"></div>
+      <div class="column is-3">
+        <section class="hero is-fullheight">
+          <div class="hero-heading">
+            <div class="section has-text-centered">
+              <h1 id="name">PaleBlueDot</h1>
+            </div>
           </div>
-        </div>
-        <div class="hero-body">
-          <div class="container">
-            <div class="columns">
-              <div class="column is-8 is-offset-2">
-                <h1 class="avatar has-text-centered section">
-                      <img width="100px" src="./static/user.png">
-                    </h1>
-                <div class="login-form">
-                  <p class="control has-icon has-icon-right">
-                    <input id="username" class="input email-input" type="text" placeholder="jsmith@example.org">
-                    <span class="icon user">
-                          <i class="fa fa-user"></i>
-                        </span>
-                  </p>
-                  <p class="control has-icon has-icon-right">
-                    <input id="password" class="input password-input" type="password" placeholder="●●●●●●●">
-                    <span class="icon user">
-                          <i class="fa fa-lock"></i>
-                        </span>
-                  </p>
-                  <p class="control login">
-                    <button onclick="javascript:login()" class="button is-success is-outlined is-large is-fullwidth">Login</button>
-                  </p>
-                </div>
-                <div class="section forgot-password">
-                  <p class="has-text-centered">
-                    <a href="#">Forgot password</a>
-                    <a href="#">Need help?</a>
-                  </p>
+          <div class="hero-body">
+            <div class="container">
+              <div class="columns">
+                <div class="column is-8 is-offset-2">
+                  <h1 class="avatar has-text-centered section">
+                    <img width="100px" src="./static/user.png">
+                  </h1>
+                  <div class="login-form">
+                    <p class="control has-icon has-icon-right">
+                      <input id="username" class="input email-input" type="text" placeholder="jsmith@example.org">
+                      <span class="icon user">
+                        <i class="fa fa-user"></i>
+                      </span>
+                    </p>
+                    <p class="control has-icon has-icon-right">
+                      <input id="password" class="input password-input" type="password" placeholder="••••••••">
+                      <span class="icon user">
+                        <i class="fa fa-lock"></i>
+                      </span>
+                    </p>
+                    <p class="control login">
+                      <button onclick="javascript:login()" class="button is-info is-outlined is-large is-fullwidth">Login</button>
+                    </p>
+                  </div>
+                  <div class="section forgot-password">
+                    <p class="has-text-centered">
+                      <a href="#">Forgot password</a>
+                      <a href="#">Need help?</a>
+                    </p>
+                  </div>
                 </div>
               </div>
             </div>
           </div>
-        </div>
-      </section>
+        </section>
+      </div>
     </div>
-  </div>
 
-  <script type="text/javascript">
-    var isToggled = false;
-    var serverUrl = "http://localhost:3000/user";
-    /* Open the sidenav */
-    function toggle() {
+    <script type="text/javascript">
+      var isToggled = false;
+      var serverUrl = "http://localhost:3000/user";
+      /* Open the sidenav */
+      function toggle() {
       console.log(isToggled)
       if (isToggled) {
-        isToggled = false;
-        document.getElementById("login-form").style.right = "-100%";
+      isToggled = false;
+      document.getElementById("login-form").style.right = "-100%";
       } else {
-        isToggled = true;
-        document.getElementById("login-form").style.right = "0";
+      isToggled = true;
+      document.getElementById("login-form").style.right = "0";
       }
-    }
+      }
 
-    function login() {
+      function login() {
       var client = new HttpClient();
       var params = "/";
       params += document.getElementById('username').value;
@@ -86,149 +88,149 @@
       params += document.getElementById('password').value;
       console.log(params);
       client.get(serverUrl + params, function(err, data) {
-        if(err)
-        {
-          console.log(err);
-        }
-        else
-        {
-          console.log("successful login!");
-          console.log(data);
-          for(var prop in data.docs[0])
-            window.localStorage.setItem(prop, data.docs[0][prop])
-          window.location.replace("index.html");
-        }
-      })
-    }
-
-    var HttpClient = function() {
-      this.get = function(aUrl, callback) {
-        var xhr = new XMLHttpRequest();
-        xhr.open("GET", aUrl, true);
-        xhr.responseType = 'json';
-        xhr.onload = function() {
-          var status = xhr.status;
-          if (status == 200) {
-            callback(null, xhr.response);
-          } else {
-            callback(status);
-          }
-        };
-        xhr.send();
+      if(err)
+      {
+      console.log(err);
       }
-    }
+      else
+      {
+      console.log("successful login!");
+      console.log(data);
+      for(var prop in data.docs[0])
+      window.localStorage.setItem(prop, data.docs[0][prop])
+      window.location.replace("index.html");
+      }
+      })
+      }
 
-    particlesJS("particles-js", {
+      var HttpClient = function() {
+      this.get = function(aUrl, callback) {
+      var xhr = new XMLHttpRequest();
+      xhr.open("GET", aUrl, true);
+      xhr.responseType = 'json';
+      xhr.onload = function() {
+      var status = xhr.status;
+      if (status == 200) {
+      callback(null, xhr.response);
+      } else {
+      callback(status);
+      }
+      };
+      xhr.send();
+      }
+      }
+
+      particlesJS("particles-js", {
       "particles": {
-        "number": {
-          "value": 355,
-          "density": {
-            "enable": true,
-            "value_area": 789.1476416322727
-          }
-        },
-        "color": {
-          "value": "#ffffff"
-        },
-        "shape": {
-          "type": "circle",
-          "stroke": {
-            "width": 0,
-            "color": "#000000"
-          },
-          "polygon": {
-            "nb_sides": 5
-          },
-          "image": {
-            "src": "img/github.svg",
-            "width": 100,
-            "height": 100
-          }
-        },
-        "opacity": {
-          "value": 0.48927153781200905,
-          "random": false,
-          "anim": {
-            "enable": true,
-            "speed": 0.2,
-            "opacity_min": 0,
-            "sync": false
-          }
-        },
-        "size": {
-          "value": 2,
-          "random": true,
-          "anim": {
-            "enable": true,
-            "speed": 8,
-            "size_min": 0,
-            "sync": false
-          }
-        },
-        "line_linked": {
-          "enable": false,
-          "distance": 150,
-          "color": "#ffffff",
-          "opacity": 0.4,
-          "width": 1
-        },
-        "move": {
-          "enable": true,
-          "speed": 0.2,
-          "direction": "none",
-          "random": true,
-          "straight": false,
-          "out_mode": "out",
-          "bounce": false,
-          "attract": {
-            "enable": false,
-            "rotateX": 600,
-            "rotateY": 1200
-          }
-        }
+      "number": {
+      "value": 355,
+      "density": {
+      "enable": true,
+      "value_area": 789.1476416322727
+      }
+      },
+      "color": {
+      "value": "#ffffff"
+      },
+      "shape": {
+      "type": "circle",
+      "stroke": {
+      "width": 0,
+      "color": "#000000"
+      },
+      "polygon": {
+      "nb_sides": 5
+      },
+      "image": {
+      "src": "img/github.svg",
+      "width": 100,
+      "height": 100
+      }
+      },
+      "opacity": {
+      "value": 0.48927153781200905,
+      "random": false,
+      "anim": {
+      "enable": true,
+      "speed": 0.2,
+      "opacity_min": 0,
+      "sync": false
+      }
+      },
+      "size": {
+      "value": 2,
+      "random": true,
+      "anim": {
+      "enable": true,
+      "speed": 8,
+      "size_min": 0,
+      "sync": false
+      }
+      },
+      "line_linked": {
+      "enable": false,
+      "distance": 150,
+      "color": "#ffffff",
+      "opacity": 0.4,
+      "width": 1
+      },
+      "move": {
+      "enable": true,
+      "speed": 0.2,
+      "direction": "none",
+      "random": true,
+      "straight": false,
+      "out_mode": "out",
+      "bounce": false,
+      "attract": {
+      "enable": false,
+      "rotateX": 600,
+      "rotateY": 1200
+      }
+      }
       },
       "interactivity": {
-        "detect_on": "canvas",
-        "events": {
-          "onhover": {
-            "enable": true,
-            "mode": "bubble"
-          },
-          "onclick": {
-            "enable": true,
-            "mode": "push"
-          },
-          "resize": true
-        },
-        "modes": {
-          "grab": {
-            "distance": 400,
-            "line_linked": {
-              "opacity": 1
-            }
-          },
-          "bubble": {
-            "distance": 83.91608391608392,
-            "size": 1,
-            "duration": 3,
-            "opacity": 1,
-            "speed": 3
-          },
-          "repulse": {
-            "distance": 200,
-            "duration": 0.4
-          },
-          "push": {
-            "particles_nb": 4
-          },
-          "remove": {
-            "particles_nb": 2
-          }
-        }
+      "detect_on": "canvas",
+      "events": {
+      "onhover": {
+      "enable": true,
+      "mode": "bubble"
+      },
+      "onclick": {
+      "enable": true,
+      "mode": "push"
+      },
+      "resize": true
+      },
+      "modes": {
+      "grab": {
+      "distance": 400,
+      "line_linked": {
+      "opacity": 1
+      }
+      },
+      "bubble": {
+      "distance": 83.91608391608392,
+      "size": 1,
+      "duration": 3,
+      "opacity": 1,
+      "speed": 3
+      },
+      "repulse": {
+      "distance": 200,
+      "duration": 0.4
+      },
+      "push": {
+      "particles_nb": 4
+      },
+      "remove": {
+      "particles_nb": 2
+      }
+      }
       },
       "retina_detect": true
-    });
-  </script>
-</body>
+      });
+    </script>
+  </body>
 
 </html>
