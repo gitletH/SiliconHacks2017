@@ -1,20 +1,27 @@
-<!DOCTYPE html>
 <html>
-  <head>
-    <title>WebRTC client</title>
+<head>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/skeleton/2.0.4/skeleton.min.css" rel="stylesheet" type="text/css">
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-        <script src="http://cdn.peerjs.com/0.3/peer.min.js"></script>
-        <script src='a.js'></script>
-  </head>
-  <body>
+    <script>
+        $('#chatmatch').click(function(){
+                    window.location.replace("chat.html");
+        });
+    </script>
+</head>
 
+<body>
+    <div align="center">
+        <button id="chatmatch">Find A Chat Match</button>
+        <button id="videomatch">Find A Video Match</button>
+    </div>
+    <script>
+        $('#chatmatch').click(function(){
+                    window.location.replace("chat.html");
+        });
+        $('#chatmatch').click(function(){
+                    window.location.replace("video.html");
+        });
+    </script>
+</body>
 
-
-  <p id="myid"></p>
-  <input type="text" id="peerid">
-  <p id="error"></p>
-  <br/>
-  <video autoplay></video>
-  <button id='call'>videocall</button>
-  </body>
 </html>
