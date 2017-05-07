@@ -21,7 +21,6 @@ var language_translator = new LanguageTranslatorV2({
   url: 'https://gateway.watsonplatform.net/language-translator/api/'
 });
 
-var twitter = require('twitter.js');
 var twitter = require('./twitter.js');
 
 var vQue = [];
