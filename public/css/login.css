@@ -1,158 +1,166 @@
 /* ---- reset ---- */
 
 body {
-  margin: 0;
-  background-color: #17182f;
+    margin: 0;
+    background-color: #17182f;
 }
 
 canvas {
-  display: block;
-  vertical-align: bottom;
+    display: block;
+    vertical-align: bottom;
 }
 
 
 /* ---- particles.js container ---- */
 
 #particles-js {
-  position: absolute;
-  width: 100%;
-  height: 100%;
+    position: absolute;
+    width: 100%;
+    height: 100%;
 }
 
 #globe {
-  position: absolute;
-  z-index: 2;
-  top: 50%;
-  left: 50%;
-  width: 200px;
-  height: 200px;
-  margin-top: -100px;
-  /* Half the height */
-  margin-left: -100px;
-  /* Half the width */
-  -webkit-transition: -webkit-transform 0.4s;
-  transition: transform 0.4s;
+    position: absolute;
+    z-index: 2;
+    top: 50%;
+    left: 50%;
+    width: 200px;
+    height: 200px;
+    margin-top: -100px;
+    /* Half the height */
+    margin-left: -100px;
+    /* Half the width */
+    -webkit-transition: -webkit-transform 0.4s;
+    transition: transform 0.4s;
 }
 
 #globe:hover {
-  -webkit-transform: scale(1.2) rotate(0.01deg);
-  transform: scale(1.2) rotate(0.01deg);
+    -webkit-transform: scale(1.2) rotate(0.01deg);
+    transform: scale(1.2) rotate(0.01deg);
 }
 
 html, body {
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
-  height: 100%;
-  padding: 0;
-  margin: 0;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+    height: 100%;
+    padding: 0;
+    margin: 0;
 }
 
 .email-input, .password-input {
-  border-radius: 40px;
-  font-size: 20px;
-  padding-left: 15px;
-  color: #95A5A6;
+    border-radius: 40px;
+    font-size: 20px;
+    padding-left: 15px;
+    color: #95A5A6;
 }
 
 .icon.user, .icon.password {
-  margin: 5px 10px 0 0;
+    margin: 5px 10px 0 0;
 }
 
 .avatar img {
-  border-radius: 100px;
-  padding: 5px;
-  border: 1px solid #dbdbdb;
+    border-radius: 100px;
+    padding: 5px;
+    border: 1px solid #dbdbdb;
 }
 
 .forgot-password a {
-  color: #95A5A6;
-  font-weight: bold;
-  padding-right: 20px;
+    color: #95A5A6;
+    font-weight: bold;
+    padding-right: 20px;
 }
 
 .login {
-  padding-top: 20px;
+    padding-top: 20px;
 }
 
 .login button {
-  border-radius: 40px;
-  font-weight: bold;
+    border-radius: 40px;
+    font-weight: bold;
 }
 
 .hero-body .container {
-  margin-top: -100px;
+    margin-top: -100px;
 }
 
 .hero.is-dark .section {
-  background-color: transparent;
+    background-color: transparent;
 }
 
 .login-wrapper {
-  margin: -0.75rem;
-  overflow-y: hidden;
+    margin: -0.75rem;
+    overflow-y: hidden;
 }
 
 .hero-banner .hero {
-  background: url('https://unsplash.it/2000/1000');
-  background-position: center;
-  background-size: cover;
-  background-blend-mode: screen;
+    background: url('https://unsplash.it/2000/1000');
+    background-position: center;
+    background-size: cover;
+    background-blend-mode: screen;
 }
 
 .hero-banner .title {
-  display: inline-block;
-  background-color: rgba(0, 0, 0, 0.6);
-  padding: 5px;
+    display: inline-block;
+    background-color: rgba(0, 0, 0, 0.6);
+    padding: 5px;
 }
 
 
 /* The side navigation menu */
 
 .sidenav {
-  height: 100%;
-  /* 100% Full-height */
-  width: 100%;
-  /* 0 width - change this with JavaScript */
-  position: fixed;
-  /* Stay in place */
-  z-index: 0;
-  /* Stay on top */
-  top: 0;
-  right: -100%;
-  overflow-x: hidden;
-  /* Disable horizontal scroll */
-  transition: 0.5s;
-  /* 0.5 second transition effect to slide in the sidenav */
+    height: 100%;
+    /* 100% Full-height */
+    width: 100%;
+    /* 0 width - change this with JavaScript */
+    position: fixed;
+    /* Stay in place */
+    z-index: 0;
+    /* Stay on top */
+    top: 0;
+    right: -100%;
+    overflow-x: hidden;
+    /* Disable horizontal scroll */
+    transition: 0.5s;
+    /* 0.5 second transition effect to slide in the sidenav */
 }
 
 
 /* Position and style the close button (top right corner) */
 
 .sidenav .closebtn {
-  position: absolute;
-  top: 0;
-  right: 0;
-  font-size: 36px;
-  margin-left: 50px;
+    position: absolute;
+    top: 0;
+    right: 0;
+    font-size: 36px;
+    margin-left: 50px;
 }
 
+h1#name {
+    /* margin-left: -40px; */
+    /* width: 100px; */
+    font-family: "HelveticaNeue-Bold", Oxygen,Ubuntu,Cantarell,"Fira Sans","Droid Sans","Helvetica Neue",Helvetica,Arial,sans-serif;
+    font-size: 2.6em;
+    color: #6699cc;
+    margin-bottom: 0.1em
+}
 
 /* Style page content - use this if you want to push the page content to the right when you open the side navigation */
 
 #main {
-  transition: margin-left .5s;
-  padding: 20px;
+    transition: margin-left .5s;
+    padding: 20px;
 }
 
 
 /* On smaller screens, where height is less than 450px, change the style of the sidenav (less padding and a smaller font size) */
 
 @media screen and (max-height: 450px) {
-  .sidenav {
-    padding-top: 15px;
-  }
-  .sidenav a {
-    font-size: 18px;
-  }
+    .sidenav {
+        padding-top: 15px;
+    }
+    .sidenav a {
+        font-size: 18px;
+    }
 }
 
 @keyframes particleAnimation

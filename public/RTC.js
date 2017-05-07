@@ -14,6 +14,36 @@ function display(remote) {
   video.srcObject = remote;
   video.onloadedmetadata = function(e) {video.play();}
 }
+function answer(call) {
+  console.log('receiving call')
+  mediapromise = navigator.mediaDevices.getUserMedia({audio : true, video : true});
+  mediapromise.then(function(stream) {
+    stream.getVideoTracks()[0].enabled = !$('#novideo').checked;
+    stream.getAudioTracks()[0].enabled = !$('#mute').checked;
+    // Answer the call, providing our MediaStream
+    call.answer(stream);
+    $('#call').text('end call');
+    call.on('stream', function(remote) {
+    // `stream` is the MediaStream of the remote peer.
+    // Here you'd add it to an HTML video/canvas element.
+      display(remote);
+    })
+    $('body').on('click', '#call', function(e) {
+      call.close()
+    })
+    call.on('close', function() {
+      $('#call').text("call ended")
+      $('#call').attr('disabled', 'disabled')
+      mediapromise = null
+    })
+    $('#novideo').change(function(e) {
+      stream.getVideoTracks()[0].enabled = !this.checked;
+    })
+    $('#mute').change(function(e) {
+      stream.getAudioTracks()[0].enabled = !this.checked;
+    })
+  })
+}
 function call(peerid) {
   if(mediapromise !== null)
   {
@@ -46,36 +76,4 @@ function call(peerid) {
     })
   })
 }
-peer.on('error', function(e) {
-  $('#error').text(e.type);
-})
-peer.on('call', function(call) {
-  console.log('receiving call')
-  mediapromise = navigator.mediaDevices.getUserMedia({audio : true, video : true});
-  mediapromise.then(function(stream) {
-    stream.getVideoTracks()[0].enabled = !$('#novideo').checked;
-    stream.getAudioTracks()[0].enabled = !$('#mute').checked;
-    // Answer the call, providing our MediaStream
-    call.answer(stream);
-    $('#call').text('end call');
-    call.on('stream', function(remote) {
-    // `stream` is the MediaStream of the remote peer.
-    // Here you'd add it to an HTML video/canvas element.
-      display(remote);
-    })
-    $('body').on('click', '#call', function(e) {
-      call.close()
-    })
-    call.on('close', function() {
-      $('#call').text("call ended")
-      $('#call').attr('disabled', 'disabled')
-      mediapromise = null
-    })
-    $('#novideo').change(function(e) {
-      stream.getVideoTracks()[0].enabled = !this.checked;
-    })
-    $('#mute').change(function(e) {
-      stream.getAudioTracks()[0].enabled = !this.checked;
-    })
-  })
-})
+peer.on('call', answer)
