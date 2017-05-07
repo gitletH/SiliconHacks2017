@@ -88,7 +88,10 @@ function connect(c) {
       }
     });
     $('#connections').append(chatbox);
-
+    // Call a Peer
+    $('#call').click(function() {
+      call(c.peer)
+    })
     c.on('data', function(data) {
         console.log('Hi YDD');
       messages.append('<div><span class="peer">' + c.peer + '</span>: ' + data +
@@ -232,12 +235,6 @@ $(document).ready(function() {
     }
     connectedPeers[requestedPeer] = 1;
   });
-  // Call a Peer
-  $('#call').click(function() {
-    var requestedPeer = $('#rid').val();
-    if(requestedPeer)
-      call(requestedPeer)
-  })
   // Close a connection.
   $('#close').click(function() {
     eachActiveConnection(function(c) {
