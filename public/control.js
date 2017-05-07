@@ -19,7 +19,7 @@ function connect(c) {
     var messages = $('<div><em>Peer connected.</em></div>').addClass('messages');
     chatbox.append(header);
     chatbox.append(messages);
- 
+
     // Select connection handler.
     chatbox.on('click', function() {
       if ($(this).attr('class').indexOf('active') === -1) {
@@ -126,7 +126,7 @@ function call(peerid) {
   {
     console.log("already in call")
     return;
-  }  
+  }
   console.log("prepare for call")
   mediapromise = navigator.mediaDevices.getUserMedia({audio : true, video : true});
   mediapromise.then(function(stream) {
@@ -206,7 +206,7 @@ function answer(call) {
 
 $(document).ready(function() {
 
-  
+
 
   // Connect to a peer
   $('#connect').click(function() {
@@ -300,6 +300,7 @@ function onmatch()
 peer.on('open', function(id){
   g_id = id;
   var usr = window.localStorage.username;
+  $('#hobbies').append('<p>Analyzing twitter accounts...</p>')
   console.log(usr);
   $.ajax({
     type: 'POST',
@@ -343,7 +344,8 @@ peer.on('open', function(id){
     },
     success: function(data){
       console.log(data);
-      for(var s in data)
+      $('#hobbies').empty()
+      for(var s of data)
       {
         $('#hobbies').append('<p>' + s + '</p>')
       }
@@ -370,5 +372,3 @@ window.onunload = window.onbeforeunload = function(e) {
 };
 
 }
-
-
