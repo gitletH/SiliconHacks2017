@@ -1,31 +1,117 @@
+<!DOCTYPE html>
 <html>
-<head>
+  <head title="citizen">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/skeleton/2.0.4/skeleton.min.css" rel="stylesheet" type="text/css">
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/js-cookie/2.1.4/js.cookie.min.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+    <link rel="stylesheet" id="bulma" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.3.2/css/bulma.min.css" />
+    <link rel="stylesheet" type="text/css" href="./css/login.css">
 
-    <script>
-        $('#chatmatch').click(function(){
-                    window.location.replace("chat.html");
-        });
-    </script>
-</head>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/js-cookie/2.1.4/js.cookie.min.js"></script>
 
-<body>
-    <div align="center">
-        <button id="chatmatch">Find A Chat Match</button>
-        <button id="videomatch">Find A Video Match</button>
+  </head>
+
+  <body>
+    <section class="hero is-light is-large is-fullheight">
+      <!-- Hero header: will stick at the top -->
+      <div class="hero-head">
+        <header class="nav">
+          <div class="container">
+            <div class="nav-right nav-menu">
+              <span class="nav-item">
+                <a class="button is-dark is-inverted is-large" onclick="javascript:toggle()">
+                  <span class="icon is-large">
+                    <i class="fa fa-bars"></i>
+                  </span>
+                </a>
+              </span>
+            </div>
+          </div>
+        </header>
+      </div>
+
+      <!-- Hero content: will be in the middle -->
+      <div class="hero-body">
+        <div class="container has-text-centered">
+          <a class="button is-large">
+            Match
+          </a>
+          <h2 class="subtitle">
+            Click to match with another earthling.
+          </h2>
+        </div>
+      </div>
+
+      <!-- Hero footer: will stick at the bottom -->
+      <div class="hero-foot">
+        <p>SiliconHacks 2017</p>
+      </div>
+    </section>
+
+    <!-- End of Hero section -->
+
+    <div id="sidebar" class="login-wrapper columns sidenav">
+      <div class="column is-9 is-hidden-mobile hero-banner"></div>
+      <div class="column is-3">
+        <section class="hero is-fullheight">
+            <table class="table is-striped" style="margin-top:6em">
+              <tbody>
+                <tr>
+                  <td>Three</td>
+                  <td>Four</td>
+                </tr>
+                <tr>
+                  <td>Five</td>
+                  <td>Six</td>
+                </tr>
+                <tr>
+                  <td>Seven</td>
+                  <td>Eight</td>
+                </tr>
+                <tr>
+                  <td>Nine</td>
+                  <td>Ten</td>
+                </tr>
+                <tr>
+                  <td>Eleven</td>
+                  <td>Twelve</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </section>
+      </div>
     </div>
+
+    
+    <!-- <div align="center"> -->
+    <!--   <button id="chatmatch">Find A Chat Match</button> -->
+    <!--   <button id="videomatch">Find A Video Match</button> -->
+    <!-- </div> -->
     <script>
-        $('#chatmatch').click(function(){
-                    window.location.replace("chat.html");
-        });
-        $('#videomatch').click(function(){
-                    window.location.replace("video.html");
-        });
-        var user = Cookies.getJSON('user');
-        console.log(user);
+      var isToggled = false;
+      /* Open the sidenav */
+      function toggle() {
+      console.log(isToggled)
+      if (isToggled) {
+      isToggled = false;
+      document.getElementById("sidebar").style.right = "-100%";
+      } else {
+      isToggled = true;
+      document.getElementById("sidebar").style.right = "0";
+      }
+      }
+
+
+      $('chatmatch').click(function(){
+      window.location.replace("chat.html");
+      });
+      $('#videomatch').click(function(){
+      window.location.replace("video.html");
+      });
+      var user = Cookies.getJSON('user');
+      console.log(user);
     </script>
-</body>
+  </body>
 
 </html>
