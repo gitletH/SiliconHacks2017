@@ -87,7 +87,9 @@
       console.log(params);
       client.get(serverUrl + params, function(err, data) {
         console.log("successful login!");
-        Cookies.set("user", data, {expires:1});
+        console.log(data);
+        var Cookies2 = Cookies.noConflict();
+        Cookies2.set("user", data, {expires:1, path: '/' });
         window.location.replace("index.html");
       })
     }
