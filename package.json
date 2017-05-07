@@ -1,0 +1,19 @@
+{
+  "name": "siliconhacks2017",
+  "version": "1.0.0",
+  "description": "YDD",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/maitianth/SiliconHacks2017.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/maitianth/SiliconHacks2017/issues"
+  },
+  "homepage": "https://github.com/maitianth/SiliconHacks2017#readme"
+}
