@@ -88,7 +88,8 @@ $(document).ready(function() {
     url: '/api',
     data: { 
       peerID: g_id,
-      userID: 'YDD',
+      userID: 'YDD'
+    },
     success: function(data){
       if(data.err)
         console.err(data);
@@ -112,7 +113,6 @@ $(document).ready(function() {
       f.on('error', function(err) { alert(err); });
     }
     connectedPeers[requestedPeer] = 1;
-    }
     }
   });
 
