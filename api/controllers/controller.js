@@ -7,6 +7,8 @@ var Cloudant = require('cloudant'),
   }),
   db = cloudant.db.use("users");
 
+  var que = [];
+
 // create a document
 var createDocument = function(newUser, callback) {
   console.log("Creating document 'mydoc'");
@@ -38,10 +40,25 @@ exports.get_user = function(req, res) {
       console.log(er);
       console.log(result);
       res.json(result);
-  })
-}
+  });
+};
 
 //
 exports.get_match = function(req, res) {
-  console.log("WOOTd!")
+  
+if (que.length === 0)
+{
+  var a = req.body.user;
+  var b = req.body.peer;
+  que.push({user: a, peer: b});
+
+  res.status(500).send('Wait');
 }
+else
+{
+  var stuff = que.pop();
+  console.log('pop: ', stuff);
+  res.json(stuff);
+}
+
+};

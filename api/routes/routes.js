@@ -7,6 +7,6 @@ module.exports = function(app) {
      .get(bigboss.get_user)
 
   //match
-  app.route('/match/:user/:peer')
-    .get(bigboss.get_match)
+  app.route('/match')
+    .post(bigboss.get_match)
 }
