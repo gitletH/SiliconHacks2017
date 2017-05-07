@@ -8,7 +8,7 @@ var peer = new Peer({
   key: 'gme13yv5bvvon7b9',
 
   // Set highest debug level (log everything!).
-  debug: 3,
+  debug: 1,
 
   // Set a logging function:
   logFunction: function() {
