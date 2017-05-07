@@ -6,11 +6,19 @@ var Cloudant = require('cloudant'),
     url: cloudantURL
   }),
   db = cloudant.db.use("users");
+
 var PersonalityInsightsV3 = require('watson-developer-cloud/personality-insights/v3');
 var personality_insights = new PersonalityInsightsV3({
   username: "93e6cb64-66d2-4cc0-8985-820705f4a9e7",
   password: "d23FHCpyRFsb",
   version_date: '2017-12-31'
+});
+
+var LanguageTranslatorV2 = require('watson-developer-cloud/language-translator/v2');
+var language_translator = new LanguageTranslatorV2({
+  username: "93e6cb64-66d2-4cc0-8985-820705f4a9e7",
+  password: "d23FHCpyRFsb",
+  url: 'https://gateway.watsonplatform.net/language-translator/api/'
 });
 
 var twitter = require('twitter.js');
@@ -128,4 +136,17 @@ function process(response) {
     }
   }
   return hobbies;
+}
+
+exports.translate = function(req, res){
+  data = req.body;
+  language_translator.translate({
+  text: data.text, source : data.source, target: data.target },
+  function (err, translation) {
+    if (err)
+      console.log('error:', err);
+    else
+      console.log(JSON.stringify(translation, null, 2));
+});
+  
 }
