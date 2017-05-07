@@ -6,6 +6,7 @@
   <link rel="stylesheet" id="bulma" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.3.2/css/bulma.min.css" />
   <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/js-cookie/2.1.4/js.cookie.min.js"></script>
   <link rel="stylesheet" type="text/css" href="./css/login.css">
 </head>
 
@@ -85,8 +86,9 @@
       params += document.getElementById('password').value;
       console.log(params);
       client.get(serverUrl + params, function(err, data) {
-        console.log("success!");
-        console.log(data);
+        console.log("successful login!");
+        Cookies.set("user", data, {expires:1});
+        window.location.replace("index.html");
       })
     }
 
