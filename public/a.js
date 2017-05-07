@@ -3,66 +3,10 @@ var mediapromise = null;
 peer.on('open', function(id) {
   $('#myid').text('My peer ID is: ' + id);
   $('body').on('click', '#call', function(e) {
-    var peerid = $('#peerid').val()
+    var peerid = $('#peerid').val();
     call(peerid)
   })
-  $('body').on('click', '#send', function(e) {
-    $('#send').attr("disabled", "disabled")
-    $('#send').text('connecting...')
-    var peerid = $('#peerid').val()
-    peer.connect(peerid, {metadata : 0})
-  })
 })
-
-peer.on('connection', function(conn) {
-  //receiver
-  if(conn.options.metadata === 0)
-  {
-    $('#send').attr("disabled", "disabled")
-    $('#send').text('connecting back...')
-    var peerid = conn.peer;
-    peer.connect(peerid, {metadata : 1})
-  }
-  //initiator
-  else if(conn.options.metadata === 1)
-  {
-    conn.send({twoway : true})
-    $('#send').text('send message')
-    $('#send').removeAttr("disabled")
-  }
-  conn.on('open', function() {
-    // Receive messages
-    conn.on('data', function(data) {
-      if(data.twoway)
-      {
-        $('#send').text('send message')
-        $('#send').removeAttr("disabled")
-      }
-      else if(data.message)
-      {
-        $('#responses').append('<p>' + data + '</p>')
-        conn.send({success : true})
-      }
-      else if(data.success)
-      {
-        $('#send').text('send message')
-        $('#send').removeAttr("disabled")
-      }
-    })
-    // Send messages
-  })
-  $('body').on('click', '#send', function(e) {
-    if($('#message').val() !== '')
-    {
-      $('#send').text('on its way...')
-      $('#send').attr("disabled", "disabled")        
-      conn.send({message : $('#message').val()})
-    }
-    $('#message').val('')
-  })
-})
-
-
 
 function display(remote) {
   var video = document.querySelector('video');
@@ -86,11 +30,11 @@ function call(peerid) {
     $('body').on('click', '#call', function(e) {
       call.close()
     })
-    call.on('close', function() {$('#call').text("call ended")})
+    call.on('close', function() {$('#call').text("call ended"); $('#call').attr('disabled', 'disabled'); mediapromise = null;})
   })
 }
 peer.on('error', function(e) {
-  console.log(e.type);
+  $('#error').text(e.type);
 })
 peer.on('call', function(call) {
   console.log('receiving call')
@@ -107,6 +51,6 @@ peer.on('call', function(call) {
     $('body').on('click', '#call', function(e) {
       call.close()
     })
-    call.on('close', function() {$('#call').text("call ended")})
+    call.on('close', function() {$('#call').text("call ended"); $('#call').attr('disabled', 'disabled'); mediapromise = null;})
   })
 })
