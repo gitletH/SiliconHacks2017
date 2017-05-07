@@ -84,7 +84,7 @@
       params += "/"
       params += document.getElementById('password').value;
       console.log(params);
-      client.get(serverUrl + params, function(data) {
+      client.get(serverUrl + params, function(err, data) {
         console.log("success!");
         console.log(data);
       })
