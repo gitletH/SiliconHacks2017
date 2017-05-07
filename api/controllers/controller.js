@@ -16,8 +16,8 @@ var personality_insights = new PersonalityInsightsV3({
 
 var LanguageTranslatorV2 = require('watson-developer-cloud/language-translator/v2');
 var language_translator = new LanguageTranslatorV2({
-  username: "93e6cb64-66d2-4cc0-8985-820705f4a9e7",
-  password: "d23FHCpyRFsb",
+  username: "a03a2498-c521-4144-9cd7-fb4ad4d615d3",
+  password: "klN6dDqw8oIA",
   url: 'https://gateway.watsonplatform.net/language-translator/api/',
   version: 'v2'
 });
@@ -101,7 +101,7 @@ exports.watson = function(req, res){
   var promise = twitter.getTweets(req.body.twitter);
   promise.then(function(tweetarr){
     var corpus = ''
-    for(var t : tweetarr)
+    for(var t of tweetarr)
       corpus += t.text + '\n'
     var params = {
     // Get the content items from the JSON file.
