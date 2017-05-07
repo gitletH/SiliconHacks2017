@@ -340,7 +340,11 @@ peer.on('open', function(id){
     url: 'http://localhost:3000/watson/',
     data:{
       twitter : window.localStorage.twitter
+<<<<<<< HEAD
           },
+=======
+    },
+>>>>>>> d59f5503520e72c356c667eb8b6f147c35a44a04
     success: function(data){
       console.log(data);
       for(var s in data)
