@@ -14,7 +14,9 @@
   <!-- particles.js container -->
   <div id="particles-js"></div>
   <img id="globe" src="./static/globe.png" alt="" onclick="javascript:toggle()">
-
+  <div class="p p-1"></div>
+  <div class="p p-2"></div>
+  <div class="p p-3"></div>
 
   <div id="login-form" class="login-wrapper columns sidenav">
     <div class="column is-9 is-hidden-mobile hero-banner"></div>
@@ -87,7 +89,9 @@
       console.log(params);
       client.get(serverUrl + params, function(err, data) {
         console.log("successful login!");
-        Cookies.set("user", data, {expires:1});
+        Cookies.set("user", data, {
+          expires: 1
+        });
         window.location.replace("index.html");
       })
     }
