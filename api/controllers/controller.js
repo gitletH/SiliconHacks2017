@@ -7,7 +7,8 @@ var Cloudant = require('cloudant'),
   }),
   db = cloudant.db.use("users");
 
-  var que = [];
+  var vQue = [];
+  var tQue = [];
 
 // create a document
 var createDocument = function(newUser, callback) {
@@ -44,21 +45,38 @@ exports.get_user = function(req, res) {
 };
 
 //
-exports.get_match = function(req, res) {
+exports.get_match_video = function(req, res) {
   
-if (que.length === 0)
+if (vQue.length === 0)
 {
-  var a = req.body.user;
-  var b = req.body.peer;
-  que.push({user: a, peer: b});
+  var usr = req.body.user;
+  var peer = req.body.peer;
+  vQue.push({user: usr, peer: peer});
 
   res.status(500).send('Wait');
 }
 else
 {
-  var stuff = que.pop();
+  var stuff = vQue.pop();
   console.log('pop: ', stuff);
   res.json(stuff);
 }
 
+};
+
+exports.get_match_text = function(req, res){
+  if (tQue.length === 0)
+{
+  var usr = req.body.user;
+  var peer = req.body.peer;
+  tQue.push({user: usr, peer: peer});
+
+  res.status(500).send('Wait');
+}
+else
+{
+  var stuff = tQue.pop();
+  console.log('pop: ', stuff);
+  res.json(stuff);
+}
 };

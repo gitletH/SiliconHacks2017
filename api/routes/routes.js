@@ -7,6 +7,8 @@ module.exports = function(app) {
      .get(bigboss.get_user)
 
   //match
-  app.route('/match')
-    .post(bigboss.get_match)
+  app.route('/match_video')
+    .post(bigboss.get_match_video)
+  app.route('/match_text')
+    .post(bigboss.get_match_text)
 }

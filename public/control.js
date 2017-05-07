@@ -26,7 +26,7 @@ peer.on('open', function(id){
   console.log(usr);
   $.ajax({
     type: 'POST',
-    url: 'http://localhost:3000/match/',
+    url: 'http://localhost:3000/match_text/',
     data:{
       peer: g_id,
       user: usr
