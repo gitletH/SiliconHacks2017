@@ -1,5 +1,6 @@
 // https://github.com/peers/peerjs.git
 
+var g_id;
 // Connect to PeerJS, have server assign an ID instead of providing one
 // Showing off some of the configs available with PeerJS :).
 var peer = new Peer({
@@ -20,6 +21,7 @@ var connectedPeers = {};
 
 // Show this peer's ID.
 peer.on('open', function(id){
+  g_id = id;
   $('#pid').text(id);
 });
 
@@ -81,6 +83,39 @@ function connect(c) {
 }
 
 $(document).ready(function() {
+  $.ajax({
+    type: 'GET',
+    url: '/api',
+    data: { 
+      peerID: g_id,
+      userID: 'YDD',
+    success: function(data){
+      if(data.err)
+        console.err(data);
+      else
+    var requestedPeer = data['peerID'];
+    if (!connectedPeers[requestedPeer]) {
+      // Create 2 connections, one labelled chat and another labelled file.
+      var c = peer.connect(requestedPeer, {
+        label: 'chat',
+        serialization: 'none',
+        metadata: {message: 'hi i want to chat with you!'}
+      });
+      c.on('open', function() {
+        connect(c);
+      });
+      c.on('error', function(err) { alert(err); });
+      var f = peer.connect(requestedPeer, { label: 'file', reliable: true });
+      f.on('open', function() {
+        connect(f);
+      });
+      f.on('error', function(err) { alert(err); });
+    }
+    connectedPeers[requestedPeer] = 1;
+    }
+    }
+  });
+
   // Connect to a peer
   $('#connect').click(function() {
     var requestedPeer = $('#rid').val();
