@@ -189,9 +189,6 @@ function answer(call) {
 }
 
 $(document).ready(function() {
-
-  $('#connect').tap(onmatch);
-
   // Connect to a peer
   $('#notconnected').click(function() {
     var requestedPeer = $('#rid').val();
