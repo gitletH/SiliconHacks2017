@@ -154,17 +154,8 @@
   function match() {
   $('#match').toggle(600);
   $('#chat').toggle(600);
-
   }
-
-
-  $('chatmatch').click(function(){
-  window.location.replace("chat.html");
-  });
-  $('#videomatch').click(function(){
-  window.location.replace("video.html");
-  });
-  var user = Cookies.getJSON('user');
+  var user = window.localStorage.getItem('user');
   console.log(user);
 </script>
 </body>

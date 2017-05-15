@@ -11,15 +11,15 @@ var Cloudant = require('cloudant'),
 
 var PersonalityInsightsV3 = require('watson-developer-cloud/personality-insights/v3');
 var personality_insights = new PersonalityInsightsV3({
-  username: cfg.PERSONALITY_USER,
-  password: cfg.PERSONALITY_PSWD,
+  username: process.env.PERSONALITY_USER,
+  password: process.env.PERSONALITY_PSWD,
   version_date: '2017-12-31'
 });
 
 var LanguageTranslatorV2 = require('watson-developer-cloud/language-translator/v2');
 var language_translator = new LanguageTranslatorV2({
-  username: cfg.TRANSLATE_USER,
-  password: cfg.TRANSLATE_PSWD,
+  username: process.env.TRANSLATE_USER,
+  password: process.env.TRANSLATE_PSWD,
   url: 'https://gateway.watsonplatform.net/language-translator/api/',
   version: 'v2'
 });
