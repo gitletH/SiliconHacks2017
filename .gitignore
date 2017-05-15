@@ -1,6 +1,8 @@
 # dependencies
 node_modules/**
 
+# secret
+.cfg
 
 # misc
 .DS_Store
