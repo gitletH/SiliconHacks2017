@@ -1,6 +1,6 @@
 'use strict';
 var fs = require('fs');
-var cfg = JSON.parse(fs.readFileSync('./cfg.json', 'utf8'));
+//var cfg = JSON.parse(fs.readFileSync('./cfg.json', 'utf8'));
 // load the Cloudant library
 var cloudantURL = "https://azincencorrioduchignoody:7d392fbae6755d3aab27bdb441c2b6a1ae879194@38255844-f351-4ae0-9d53-5774023e3cf4-bluemix.cloudant.com"
 var Cloudant = require('cloudant'),
