@@ -11,4 +11,4 @@ app.use(express.static(__dirname + '/public'));
 
 app.listen(process.env.PORT || port);
 
-console.log("working on 3000");
+console.log("working on " + process.env.PORT);
