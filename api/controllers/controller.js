@@ -1,7 +1,8 @@
 'use strict';
 var fs = require('fs');
-console.log(require('dotenv').config())
-var config = require('dotenv').config().parsed;
+var dotenv = require('dotenv');
+console.log(dotenv.load())
+var config = require('dotenv').load().parsed;
 //var cfg = JSON.parse(fs.readFileSync('./cfg.json', 'utf8'));
 // load the Cloudant library
 var cloudantURL = "https://azincencorrioduchignoody:7d392fbae6755d3aab27bdb441c2b6a1ae879194@38255844-f351-4ae0-9d53-5774023e3cf4-bluemix.cloudant.com"
