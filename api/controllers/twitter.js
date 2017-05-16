@@ -12,10 +12,11 @@
 * See the License for the specific language governing permissions and
 * limitations under the License.
 */
-const consumer = process.env.CONSUMER
-const consumer_secret = process.env.CONSUMER_SECRET
-const access_token = process.env.ACCESS
-const access_secret = process.env.ACCESS_SECRET
+var config = require('dotenv').config().parsed;
+const consumer = config.CONSUMER
+const consumer_secret = config.CONSUMER_SECRET
+const access_token = config.ACCESS
+const access_secret = config.ACCESS_SECRET
 const twitter = require('twitter');
 const MAX_COUNT = 200;
 

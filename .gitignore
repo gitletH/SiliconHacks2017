@@ -2,7 +2,7 @@
 node_modules/**
 
 # secret
-.cfg
+.env
 
 # misc
 .DS_Store

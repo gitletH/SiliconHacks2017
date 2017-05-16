@@ -1,5 +1,6 @@
 'use strict';
 var fs = require('fs');
+var config = require('dotenv').config().parsed;
 //var cfg = JSON.parse(fs.readFileSync('./cfg.json', 'utf8'));
 // load the Cloudant library
 var cloudantURL = "https://azincencorrioduchignoody:7d392fbae6755d3aab27bdb441c2b6a1ae879194@38255844-f351-4ae0-9d53-5774023e3cf4-bluemix.cloudant.com"
@@ -11,15 +12,15 @@ var Cloudant = require('cloudant'),
 
 var PersonalityInsightsV3 = require('watson-developer-cloud/personality-insights/v3');
 var personality_insights = new PersonalityInsightsV3({
-  username: process.env.PERSONALITY_USER,
-  password: process.env.PERSONALITY_PSWD,
+  username: config.PERSONALITY_USER,
+  password: config.PERSONALITY_PSWD,
   version_date: '2017-12-31'
 });
 
 var LanguageTranslatorV2 = require('watson-developer-cloud/language-translator/v2');
 var language_translator = new LanguageTranslatorV2({
-  username: process.env.TRANSLATE_USER,
-  password: process.env.TRANSLATE_PSWD,
+  username: config.TRANSLATE_USER,
+  password: config.TRANSLATE_PSWD,
   url: 'https://gateway.watsonplatform.net/language-translator/api/',
   version: 'v2'
 });
