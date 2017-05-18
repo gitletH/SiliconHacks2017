@@ -192,7 +192,7 @@ $(document).ready(function() {
     $('#text').focus();
   });
   $('#match').click(function(e) {
-    match();
+    findmatch();
   });
   // Goes through each active peer and calls FN on its connections.
   function eachActiveConnection(fn) {
@@ -218,7 +218,7 @@ $(document).ready(function() {
 
 
 
-function match()
+function findmatch()
 {
   //output twitter data
   $('#hobbies').append('<p>Analyzing twitter accounts...</p>')
