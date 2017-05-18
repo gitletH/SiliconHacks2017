@@ -155,8 +155,10 @@ exports.translate = function(req, res){
   text: data.text, source : data.source, target: data.target },
   function (err, translation) {
     if (err)
+    {
       console.log('error:', err);
       res.json('');
+    }
     else
     {
       console.log(JSON.stringify(translation, null, 2));
