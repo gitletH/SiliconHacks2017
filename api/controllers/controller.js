@@ -152,12 +152,16 @@ function process(response) {
 exports.translate = function(req, res){
   data = req.body;
   language_translator.translate({
-  text: data.text, source : data.source, target: 'cn' },
+  text: data.text, source : data.source, target: data.target },
   function (err, translation) {
     if (err)
       console.log('error:', err);
+      res.json('');
     else
+    {
       console.log(JSON.stringify(translation, null, 2));
+      res.json(translation.translations[0].translation);
+    }
 });
 
 }

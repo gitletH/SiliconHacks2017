@@ -32,64 +32,39 @@ function connect(c) {
         $(this).removeClass('active');
       }
     });
+
     $('#connections').append(chatbox);
     // Call a Peer
     $('#call').click(function() {
       call(c.peer)
     })
-    c.on('data', function(data) {
-      var tran;
-      messages.append('<div><span class="peer">' + c.peer + '</span>: ' + data +
-        '</div>');
 
-          $.ajax({
-    type: 'POST',
-    url: 'http://localhost:3000/match_text/',
-    data:{
-      text: data,
-      target: window.localStorage.language,
-      source: lang
-    },
-    success: function(data){
-      console.log(data);
-          var requestedPeer = data['peer'];
-    if (!connectedPeers[requestedPeer]) {
-      // Create 2 connections, one labelled chat and another labelled file.
-      var c = peer.connect(requestedPeer, {
-        label: 'chat',
-        serialization: 'none',
-        metadata: {message: 'hi YDD',
-      language: window.localStorage.language}
-      });
-      c.on('open', function() {
-        connect(c);
-      });
-      c.on('error', function(err) { alert(err); });
-    }
-    connectedPeers[requestedPeer] = 1;
-  },
-  error: function(err){
-    console.log("Failed to match");
-  }
-  });
-  $.ajax({
-    type: 'POST',
-    url: 'http://localhost:3000/watson/',
-    data:{
-      twitter : window.localStorage.twitter
-          },
-    success: function(data){
-      console.log(data);
-      for(var s in data)
+    c.on('data', function(data) {
+      messages.append('<div><span class="peer">' + c.peer + '</span>: <p>' + data +
+        '</p>');
+      if(window.localStorage.language !== lang)
       {
-        $('#hobbies').append('<p>' + s + '</p>')
+        $.ajax({
+          type: 'POST',
+          url: 'https://cit-i-zen.herokuapp.com:443/translate/',
+          data:{
+          text: data,
+          target: window.localStorage.language,
+          source: lang
+          },
+          success: function(data){
+            if(data === '')
+              data = "Failed to translate"
+            console.log(data)
+            messages.append('<p>' + data + '</p></div>')
+          },
+          error: function(err){
+            console.log("Failed to translate")
+            messages.append('<p>Failed to translate.</p></div>')
+          }
+        });
       }
-    },
-    error: function(err){
-      console.log("Invalid twitter handle probably");
-    }
-  });
-});
+    });
 
     c.on('close', function() {
         alert(c.peer + ' has left the chat.');
@@ -193,23 +168,25 @@ function answer(call) {
 }
 
 $(document).ready(function() {
-  // Connect to a peer
-  $('#notconnected').click(function() {
-    var requestedPeer = $('#rid').val();
-    if (!connectedPeers[requestedPeer]) {
-      // Create 2 connections, one labelled chat and another labelled file.
-      var c = peer.connect(requestedPeer, {
-        label: 'chat',
-        serialization: 'none',
-        metadata: {message: 'hi i want to chat with you!',
-      language: window.localStorage.language}
-      });
-      c.on('open', function() {
-        connect(c);
-      });
-      c.on('error', function(err) { alert(err); });
+  //output twitter data
+  $('#hobbies').append('<p>Analyzing twitter accounts...</p>')
+  $.ajax({
+    type: 'POST',
+    url: 'https://cit-i-zen.herokuapp.com:443/watson/',
+    data:{
+      twitter : window.localStorage.twitter
+    },
+    success: function(data){
+      console.log(data);
+      $('#hobbies').empty()
+      for(var s of data)
+      {
+        $('#hobbies').append('<p>' + s + '</p>')
+      }
+    },
+    error: function(err){
+      console.log("Invalid twitter handle probably");
     }
-    connectedPeers[requestedPeer] = 1;
   });
   // Close a connection.
   $('#close').click(function() {
@@ -224,7 +201,8 @@ $(document).ready(function() {
     // For each active connection, send the message.
     var msg = $('#text').val();
     eachActiveConnection(function(c, $c) {
-      if (c.label === 'chat') {
+      if (c.label === 'chat')
+      {
         c.send(msg);
         $c.find('.messages').append('<div><span class="you">You: </span>' + msg
           + '</div>');
@@ -281,11 +259,10 @@ peer.on('open', function(id){
   alert('stuff is obtained');
   g_id = id;
   var usr = window.localStorage.username;
-  $('#hobbies').append('<p>Analyzing twitter accounts...</p>')
   console.log(usr);
   $.ajax({
     type: 'POST',
-    url: 'http://localhost:3000/match_text/',
+    url: 'https://cit-i-zen.herokuapp.com:443/match_text/',
     data:{
       peer: g_id,
       user: usr
@@ -312,24 +289,6 @@ peer.on('open', function(id){
     alert(err);
   }
   });
-  $.ajax({
-    type: 'POST',
-    url: 'http://localhost:3000/watson/',
-    data:{
-      twitter : window.localStorage.twitter
-    },
-    success: function(data){
-      console.log(data);
-      $('#hobbies').empty()
-      for(var s of data)
-      {
-        $('#hobbies').append('<p>' + s + '</p>')
-      }
-    },
-    error: function(err){
-      console.log("Invalid twitter handle probably");
-    }
-  });
 });
 
 // Await connections from others
@@ -340,7 +299,6 @@ peer.on('error', function(err) {
 })
 
 // Make sure things clean up properly.
-
 window.onunload = window.onbeforeunload = function(e) {
   if (!!peer && !peer.destroyed) {
     peer.destroy();
