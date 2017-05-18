@@ -129,6 +129,9 @@ exports.watson = function(req, res){
         res.json(hobbies)
       }
     });
+  }).catch(function(err) {
+    console.log(JSON.stringify(err, null, 3));
+    res.json({error : err})
   })
 }
 function process(response) {

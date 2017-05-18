@@ -168,34 +168,6 @@ function answer(call) {
 }
 
 $(document).ready(function() {
-  //output twitter data
-  $('#hobbies').append('<p>Analyzing twitter accounts...</p>')
-  $.ajax({
-    type: 'POST',
-    url: 'https://cit-i-zen.herokuapp.com:443/watson/',
-    data:{
-      twitter : window.localStorage.twitter
-    },
-    success: function(data){
-      console.log(data);
-      $('#hobbies').empty()
-      if(data.error)
-      {
-        $('#hobbies').append('<p>Could not retrieve Twitter analytics</p>')
-      }
-      else
-      {
-        $('#hobbies').append('<p>Twitter analytics results:</p>')
-        for(var s of data)
-        {
-          $('#hobbies').append('<p>' + s + '</p>')
-        }
-      }
-    },
-    error: function(err){
-      console.log("Invalid twitter handle probably");
-    }
-  });
   // Close a connection.
   $('#close').click(function() {
     eachActiveConnection(function(c) {
@@ -219,7 +191,9 @@ $(document).ready(function() {
     $('#text').val('');
     $('#text').focus();
   });
-
+  $('match').click(function(e) {
+    match();
+  });
   // Goes through each active peer and calls FN on its connections.
   function eachActiveConnection(fn) {
     var actives = $('.active');
@@ -246,6 +220,34 @@ $(document).ready(function() {
 
 function match()
 {
+  //output twitter data
+  $('#hobbies').append('<p>Analyzing twitter accounts...</p>')
+  $.ajax({
+    type: 'POST',
+    url: 'https://cit-i-zen.herokuapp.com:443/watson/',
+    data:{
+      twitter : window.localStorage.twitter
+    },
+    success: function(data){
+      console.log(data);
+      $('#hobbies').empty()
+      if(data.error)
+      {
+        $('#hobbies').append('<p>Could not retrieve Twitter analytics</p>')
+      }
+      else
+      {
+        $('#hobbies').append('<p>Twitter analytics results:</p>')
+        for(var s of data)
+        {
+          $('#hobbies').append('<p>' + s + '</p>')
+        }
+      }
+    },
+    error: function(err){
+      console.log("connection disrupted");
+    }
+  });
   peer = new Peer({
   // Set API key for cloud server (you don't need this if you're running your
   // own.
