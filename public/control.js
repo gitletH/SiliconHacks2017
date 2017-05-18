@@ -191,7 +191,7 @@ $(document).ready(function() {
     $('#text').val('');
     $('#text').focus();
   });
-  $('match').click(function(e) {
+  $('#match').click(function(e) {
     match();
   });
   // Goes through each active peer and calls FN on its connections.
