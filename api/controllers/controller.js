@@ -115,9 +115,12 @@ exports.watson = function(req, res){
     },
     consumption_preferences : true
     };
-    personality_insights.profile(params, function(error, response) {
-      if (error)
-        console.log('Error:', JSON.stringify(error, null, 3));
+    personality_insights.profile(params, function(err, response) {
+      if (err)
+      {
+        console.log('Error:', JSON.stringify(err, null, 3));
+        res.json({error : err})
+      }
       else
       {
         console.log('done!');
@@ -156,8 +159,8 @@ exports.translate = function(req, res){
   function (err, translation) {
     if (err)
     {
-      console.log('error:', err);
-      res.json('');
+      console.log('Error:', err);
+      res.json({error : err});
     }
     else
     {

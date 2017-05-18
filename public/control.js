@@ -53,7 +53,7 @@ function connect(c) {
           source: lang
           },
           success: function(data){
-            if(data === '')
+            if(data.error)
               data = "Failed to translate"
             console.log(data)
             messages.append('<p>' + data + '</p></div>')
@@ -179,9 +179,17 @@ $(document).ready(function() {
     success: function(data){
       console.log(data);
       $('#hobbies').empty()
-      for(var s of data)
+      if(data.error)
       {
-        $('#hobbies').append('<p>' + s + '</p>')
+        $('#hobbies').append('<p>Could not retrieve Twitter analytics</p>')
+      }
+      else
+      {
+        $('#hobbies').append('<p>Twitter analytics results:</p>')
+        for(var s of data)
+        {
+          $('#hobbies').append('<p>' + s + '</p>')
+        }
       }
     },
     error: function(err){
