@@ -117,7 +117,7 @@ exports.watson = function(req, res){
     };
     personality_insights.profile(params, function(error, response) {
       if (error)
-        console.log('Error:', error);
+        console.log('Error:', JSON.stringify(error, null, 3));
       else
       {
         console.log('done!');

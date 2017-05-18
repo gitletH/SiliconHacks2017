@@ -236,7 +236,7 @@ $(document).ready(function() {
 
 
 
-function onmatch()
+function match()
 {
   peer = new Peer({
   // Set API key for cloud server (you don't need this if you're running your
