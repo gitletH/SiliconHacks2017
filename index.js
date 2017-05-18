@@ -3,6 +3,7 @@ var express = require('express'),
     app = express(),
     port = 3000,
     bodyParser = require('body-parser');
+require('dotenv-safe').load();
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 var routes = require('./api/routes/routes.js');
