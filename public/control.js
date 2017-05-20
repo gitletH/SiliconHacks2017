@@ -253,7 +253,6 @@ function findmatch()
   // own.
   host: '/',
   port: 9000,
-  path: '/',
   secure: true,
   // Set highest debug level (log everything!).
   debug: 1,
