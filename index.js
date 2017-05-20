@@ -10,7 +10,7 @@ var routes = require('./api/routes/routes.js');
 routes(app);
 app.use(express.static(__dirname + '/public'));
 app.listen(process.env.PORT || port);
-
+var fs = require('fs');
 var PeerServer = require('peer').PeerServer;
 var server = PeerServer({
   port: 9000,
