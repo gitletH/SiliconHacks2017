@@ -251,7 +251,9 @@ function findmatch()
   peer = new Peer({
   // Set API key for cloud server (you don't need this if you're running your
   // own.
-  key: 'gme13yv5bvvon7b9',
+  host: '/',
+  port: 9000,
+  path: '/',
   secure: true,
   // Set highest debug level (log everything!).
   debug: 1,
