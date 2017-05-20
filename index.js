@@ -15,7 +15,7 @@ var PeerServer = require('peer').PeerServer;
 var server = PeerServer({
   port: 9000,
   ssl: {
-    key: fs.readFileSync('/peerssl/here.key'),
+    key: fs.readFileSync('/peerssl/here.pem'),
     cert: fs.readFileSync('/peerssl/here.crt')
   }
 });

@@ -1,5 +1,4 @@
 'use strict';
-var fs = require('fs');
 process.env = require('dotenv-safe').load().parsed;
 //var cfg = JSON.parse(fs.readFileSync('./cfg.json', 'utf8'));
 // load the Cloudant library
