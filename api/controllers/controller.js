@@ -137,7 +137,7 @@ function process(response) {
 
 
 exports.translate = function(req, res){
-  data = req.body;
+  var data = req.body;
   language_translator.translate({
   text: data.text, source : data.source, target: data.target },
   function (err, translation) {
