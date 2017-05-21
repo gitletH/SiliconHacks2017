@@ -1,6 +1,4 @@
-var mediapromise = null;
 var socket = io();
-var receive;
 var connectedPeers = {};
 var lang;
 //redirect if not logged in
@@ -12,6 +10,7 @@ if(window.localStorage.getItem('_id') === null)
 $(document).ready(function() {
   //open a connection
   $('#connect').click(function(event) {
+    socket.open()
     console.log('opening connection');
     var usr = window.localStorage.username;
     console.log(usr);
@@ -156,14 +155,15 @@ socket.on('chat', function(data) {
       source: lang
       },
       success: function(data){
-        if(data.error)
-          data = "Failed to translate"
         console.log(data)
-        $('.messages').append('<p>' + data + '</p></div>')
+        if(data.error)
+          $('.messages').append('<p>' + JSON.stringify(data.error) + '</p></div>')
+        else
+          $('.messages').append('<p>' + data + '</p></div>')
       },
       error: function(err){
-        console.log("Failed to translate")
-        $('.messages').append('<p>Failed to translate.</p></div>')
+        console.log(JSON.stringify(err))
+        $('.messages').append('<p>' + JSON.stringify(JSON.stringify(err)) + '</p></div>')
       }
     });
   }

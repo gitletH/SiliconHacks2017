@@ -151,6 +151,5 @@ exports.translate = function(req, res){
       console.log(JSON.stringify(translation, null, 2));
       res.json(translation.translations[0].translation);
     }
-});
-
+  });
 }

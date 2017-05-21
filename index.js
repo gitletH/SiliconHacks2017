@@ -40,6 +40,12 @@ io.on('connection', function(client){
     console.log(client.id + ' disconnected');
     client.broadcast.to(connections[client.id]).emit('kill', client.id)
   })
+  client.on('call', function(data){
+
+  })
+  client.on('answered', function(data){
+
+  })
 });
 
 
