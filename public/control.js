@@ -165,8 +165,8 @@ socket.on('kill', function(data) {
 });
 
 
-function setUpChatBox(target, lang) {
-  console.log(lang);
+function setUpChatBox(target, language) {
+  lang = language;
   var chatbox = $('#message').addClass('connection').addClass('active').attr('id', target);
   var header = $('<h1></h1>').html('Chat with <strong>' + target + '</strong>');
   var messages = $('<div><em>Peer connected.</em></div>').addClass('messages');
