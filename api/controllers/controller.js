@@ -63,7 +63,7 @@ exports.get_user = function(req, res) {
   });
 };
 
-//
+/*
 exports.get_match_video = function(req, res) {
 
 if (vQue.length === 0)
@@ -81,14 +81,14 @@ else
 }
 
 };
-
+*/
 exports.get_match_text = function(req, res){
-  console.log('peer ' + req.body.peer + 'trys to connect');
+  console.log('user ' + req.body.user + 'trys to connect');
   if (tQue.length === 0)
   {
     var usr = req.body.user;
-    var peer = req.body.peer;
-    tQue.push({user: usr, peer: peer});
+    var id = req.body.id;
+    tQue.push({user: usr, id: id});
     res.status(500).send('Wait');
   }
   else
