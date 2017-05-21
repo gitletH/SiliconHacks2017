@@ -19,19 +19,19 @@ function call() {
   mediapromise.then(function(stream) {
     stream.getVideoTracks()[0].enabled = !$('#novideo').checked;
     stream.getAudioTracks()[0].enabled = !$('#mute').checked;
-    peer = new SimplePeer({ initiator: true, stream: stream, trickle: false })
+    peer = new SimplePeer({ initiator: true, stream: stream})
     $('#call').attr('disabled', 'disabled')
     $('#call').text("calling...")
 
     peer.on('signal', function(data) {
       if(first)
       {
-        socket.emit('call', JSON.stringify(data, null, 4))
+        socket.emit('call', JSON.stringify(data))
         first = false;
       }
       else
       {
-        socket.emit('calldata', JSON.stringify(data, null, 4))
+        socket.emit('calldata', JSON.stringify(data))
       }
     })
     socket.on('calldata', function(data){
@@ -86,12 +86,12 @@ function answer(data) {
     stream.getVideoTracks()[0].enabled = !$('#novideo').checked;
     stream.getAudioTracks()[0].enabled = !$('#mute').checked;
     // Answer the call, providing our MediaStream
-    peer = new SimplePeer({initiator: false, stream: stream, trickle: false })
+    peer = new SimplePeer({initiator: false, stream: stream})
     $('#call').attr('disabled', 'disabled')
     $('#call').text("answering call...")
 
     peer.on('signal', function(data) {
-      socker.emit('calldata', JSON.stringify(data, null, 4))
+      socker.emit('calldata', JSON.stringify(data))
     })
     socket.on('calldata', function(data){
       peer.signal(JSON.parse(data))
