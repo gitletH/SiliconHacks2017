@@ -95,7 +95,7 @@ function answer(data) {
     })
     socket.on('calldata', function(data){
       console.log(data);
-      peer.signal(JSON.parse(data))
+      peer.signal(data)
     })
 
 
