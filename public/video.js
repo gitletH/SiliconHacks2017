@@ -80,7 +80,8 @@ function answer(data) {
     peer.signal(data)
     socket.emit('answered', JSON.stringify(data))
     peer.on('connect', function(){
-      $('#call').text('end call');
+      $('#call').text('end call')
+      $('#call').removeAttr('disabled')
     })
     peer.on('error', function(err) {
       console.log(err);

@@ -46,9 +46,15 @@ $(document).ready(function() {
     
     // Close a connection.
     $('#close').click(function() {
+      if(peer)
+      {
+        peer.destroy();
+      }
       socket.close();
       $('#connect').removeAttr('disabled')
       $('#connect').text('Connect')
+      $('#call').removeAttr('disabled')
+      $('#call').text('Videocall')
     });
     // Send a chat message to all active connections.
     $('#send').submit(function(e) {
@@ -183,7 +189,10 @@ socket.on('error', function(err) {
 })
 // Make sure things clean up properly.
 window.onunload = window.onbeforeunload = function(e) {
-  if (!!socket) {
+  if(peer) {
+    peer.destroy();
+  }
+  if (socket) {
     socket.close();
   }
 };

@@ -44,7 +44,7 @@ io.on('connection', function(client){
     client.broadcast.to(connections[client.id]).emit('call', data)
   })
   client.on('answered', function(data){
-    client.broadcast.to(connections[client.id]).emit('answer', data)
+    client.broadcast.to(connections[client.id]).emit('answered', data)
   })
 });
 
