@@ -27,6 +27,8 @@ $(document).ready(function() {
         var requested = match.id;
         if (!connectedPeers[requested]) {
           socket.emit('room', {id : requested, lang : window.localStorage.language})
+          $('#connect').text('found a connection')
+          $('#connect').attr('disabled', 'disabled')
         }
       },
       error: function(err){ alert(JSON.stringify(err)) }
