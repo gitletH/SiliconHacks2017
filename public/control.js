@@ -19,7 +19,7 @@ $(document).ready(function() {
       type: 'POST',
       url: 'https://cit-i-zen.herokuapp.com:443/match_text/',
       data:{
-        user: usr
+        user: usr,
         id: socket.id
       },
       success: function(match){
