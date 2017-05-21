@@ -27,7 +27,7 @@ $(document).ready(function() {
         var requested = match.id;
         if (!connectedPeers[requested]) {
           socket.emit('room', {id : requested, lang : window.localStorage.language})
-          $('#connect').text('found a connection')
+          $('#connect').text('Connection Found')
           $('#connect').attr('disabled', 'disabled')
         }
       },
@@ -157,11 +157,10 @@ socket.on('chat', function(data) {
 
 socket.on('kill', function(data) {
     alert(data + ' has left the chat.');
-    $('.connection').each(function(index, el) {
-      if(el.attr('id') === data)
-        el.remove();
-    });
+    $('.connection').filter(function(){return $(this).attr('id') === data}).remove();
     connectedPeers[data] = false;
+    $('#connect').removeAttr('disabled')
+    $('#connect').text('Connect')
 });
 
 
