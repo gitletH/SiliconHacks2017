@@ -18,33 +18,40 @@ function call() {
     stream.getVideoTracks()[0].enabled = !$('#novideo').checked;
     stream.getAudioTracks()[0].enabled = !$('#mute').checked;
     peer = new SimplePeer({ initiator: true, stream: stream })
+    $('#call').attr('disabled', 'disabled')
+    $('#call').text("calling...")
+    socket.emit('call', JSON.stringify(data, null, 4))
     peer.on('signal', function(data) {
-      socket.emit('call', JSON.stringify(data))
-      $('#call').attr('disabled', 'disabled')
-      $('#call').text("calling...")
+      peer.signal(data)
     })
     socket.on('answered', function(data) {
       peer.signal(data)
+    })
+
+    peer.on('connect', function(){
+      $('#call').text('end call')
+      $('#call').removeAttr('disabled')
+      incall = true
     })
     peer.on('error', function(err) {
       console.log(err);
       $('#call').attr('disabled', 'disabled')
       $('#call').text("can't call")
     })
+
+
     peer.on('stream', function(remote) {
-      if($('#call').attr('disabled') == 'disabled')
-      {
-        $('#call').text('end call')
-        $('#call').removeAttr('disabled')
-      }
       display(remote);
     })
     $('body').on('click', '#call', function(e) {
       peer.destroy(true)
     })
+
+
     peer.on('close', function() {
       $('#call').text("call ended")
       $('#call').attr('disabled', 'disabled')
+      incall = false
       mediapromise = null
     })
     $('#novideo').change(function(e) {
@@ -57,7 +64,7 @@ function call() {
 }
 
 function answer(data) {
-  if(mediapromise !== null)
+  if(incall)
   {
     console.log("already in call")
     return;
@@ -70,25 +77,37 @@ function answer(data) {
     // Answer the call, providing our MediaStream
     peer = new SimplePeer({ stream: stream })
     peer.signal(data)
-    socket.emit('answered', JSON.stringify(data))
+    socket.emit('answered', JSON.stringify(data, null, 4))
+    $('#call').attr('disabled', 'disabled')
+    $('#call').text("answering call...")
+    peer.on('signal', function(data) {
+      peer.signal(data)
+    })
+
     peer.on('connect', function(){
       $('#call').text('end call')
       $('#call').removeAttr('disabled')
+      incall = true
     })
     peer.on('error', function(err) {
       console.log(err);
       $('#call').attr('disabled', 'disabled')
       $('#call').text("can't receive")
     })
+
+
     peer.on('stream', function(remote) {
       display(remote);
     })
     $('body').on('click', '#call', function(e) {
       peer.destroy(true)
     })
+
+
     peer.on('close', function() {
       $('#call').text("call ended")
       $('#call').attr('disabled', 'disabled')
+      incall = false
       mediapromise = null
     })
     $('#novideo').change(function(e) {
