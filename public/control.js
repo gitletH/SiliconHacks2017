@@ -59,7 +59,7 @@ $(document).ready(function() {
     $('#text').val('');
     $('#text').focus();
   });
-  ('.connection').on('click', function() {
+  $('.connection').on('click', function() {
     if ($(this).attr('class').indexOf('active') === -1) {
       $(this).addClass('active');
     } else {
