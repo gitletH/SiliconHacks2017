@@ -95,8 +95,11 @@ function answer(data) {
     })
     socket.on('calldata', function(data){
       //damn ICE people
-      if(data.candidate && data.candidate.candidate && data.candidate.candidate.includes("."))
+      if(data.candidate && data.candidate.candidate && data.candidate.candidate.includes("srflx"))
+      {
+        console.log('srflx found, discard')
         return;
+      }
       //damn ICE people 
       peer.signal(data)
     })
