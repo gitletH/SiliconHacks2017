@@ -108,10 +108,11 @@ function answer(data) {
 }
 
 // Call a Peer
-$('#call').click(function() {
+$('#call').on('click', function(event) {
   if(socket.id)
     call()
 })
+
 socket.on('call', function(data){
   answer(data)
 })
