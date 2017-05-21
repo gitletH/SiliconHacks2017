@@ -53,14 +53,6 @@ function call() {
     $('#mute').change(function(e) {
       stream.getAudioTracks()[0].enabled = !this.checked;
     })
-    setTimeout(function() {
-      if(!call.open)
-      {
-        $('#call').attr('disabled', 'disabled')
-        $('#call').text("didn't pick up")
-      }
-    }, 10000)
-
   })
 }
 
