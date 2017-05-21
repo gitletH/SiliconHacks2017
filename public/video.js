@@ -95,7 +95,7 @@ function answer(data) {
     })
     socket.on('calldata', function(data){
       //damn ICE people
-      if(data.candidate && data.candidate.candidate && data.candidate.candidate.includes("srflx"))
+      if(data.candidate && data.candidate.candidate && data.candidate.candidate.includes("."))
         return;
       //damn ICE people 
       peer.signal(data)
