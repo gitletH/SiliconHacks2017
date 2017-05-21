@@ -3,7 +3,7 @@ var express = require('express'),
     http = require("http"),
     app = express(),
     port = 3000,
-    io = require("socket.io"), // web socket external module
+    io = require("socket.io")(http), // web socket external module
     bodyParser = require('body-parser');
 require('dotenv-safe').load();
 app.use(bodyParser.urlencoded({ extended: true }));
