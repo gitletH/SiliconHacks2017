@@ -55,7 +55,8 @@ function call() {
       display(remote);
     })
     $('body').on('click', '#call', function(e) {
-      peer.destroy(true)
+      if(incall)
+        peer.destroy(true)
     })
 
 
@@ -94,13 +95,6 @@ function answer(data) {
       socker.emit('calldata', data)
     })
     socket.on('calldata', function(data){
-      //damn ICE people
-      if(data.candidate && data.candidate.candidate && data.candidate.candidate.includes("."))
-      {
-        console.log('ipv4 found, discard')
-        return;
-      }
-      //damn ICE people 
       peer.signal(data)
     })
 
@@ -121,7 +115,8 @@ function answer(data) {
       display(remote);
     })
     $('body').on('click', '#call', function(e) {
-      peer.destroy(true)
+      if(incall)
+        peer.destroy(true)
     })
 
 
