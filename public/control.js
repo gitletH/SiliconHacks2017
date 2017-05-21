@@ -81,7 +81,6 @@ $(document).ready(function() {
         var connected = connectedPeers[peerId];
         if(connected)
           fn(peerId, $(this));
-        }
       }
       checkedIds[peerId] = true;
     });
