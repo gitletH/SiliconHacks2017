@@ -7,7 +7,8 @@ function display(remote) {
 }
 
 function call() {
-  if(mediapromise !== null)
+  var first = false;
+  if(incall)
   {
     console.log("already in call")
     return;
@@ -20,11 +21,12 @@ function call() {
     peer = new SimplePeer({ initiator: true, stream: stream })
     $('#call').attr('disabled', 'disabled')
     $('#call').text("calling...")
-    socket.emit('call', JSON.stringify(data, null, 4))
     peer.on('signal', function(data) {
-      peer.signal(data)
-    })
-    socket.on('answered', function(data) {
+      if(!first)
+      {
+        socket.emit('call', JSON.stringify(data, null, 4))
+        first = true;
+      }
       peer.signal(data)
     })
 
@@ -77,7 +79,6 @@ function answer(data) {
     // Answer the call, providing our MediaStream
     peer = new SimplePeer({ stream: stream })
     peer.signal(data)
-    socket.emit('answered', JSON.stringify(data, null, 4))
     $('#call').attr('disabled', 'disabled')
     $('#call').text("answering call...")
     peer.on('signal', function(data) {
@@ -118,13 +119,3 @@ function answer(data) {
     })
   })
 }
-
-// Call a Peer
-$('#call').on('click', function(event) {
-  if(socket.id)
-    call()
-})
-
-socket.on('call', function(data){
-  answer(data)
-})
