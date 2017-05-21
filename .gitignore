@@ -2,8 +2,8 @@
 node_modules/**
 
 # secret
-.env
-api/controllers/.env
+**/.env~
+.env~
 
 # misc
 .DS_Store
