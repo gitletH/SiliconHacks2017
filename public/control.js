@@ -34,7 +34,13 @@ $(document).ready(function() {
           $('#connect').attr('disabled', 'disabled')
         }
       },
-      error: function(err){ alert(JSON.stringify(err)) }
+      error: function(err){
+        console.log(JSON.stringify(err))
+        if(err.status == '500')
+        {
+          $('#connect').text('Waiting for connection')
+        }
+      }
     });
     
     // Await connections from others
