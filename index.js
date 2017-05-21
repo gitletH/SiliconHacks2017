@@ -44,6 +44,7 @@ io.on('connection', function(client){
     client.broadcast.to(connections[client.id]).emit('call', data)
   })
   client.on('calldata', function(data){
+    console.log(JSON.stringify(data))
     client.broadcast.to(connections[client.id]).emit('calldata', data)
   })
 });
