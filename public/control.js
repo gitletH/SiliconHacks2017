@@ -9,7 +9,7 @@ if(window.localStorage.getItem('_id') === null)
 
 $(document).ready(function() {
   //open a connection
-  $('#connect').click(function(event) {
+  $('#connect').on('click', function(event) {
     socket.open()
     console.log('opening connection');
     var usr = window.localStorage.username;
