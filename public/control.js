@@ -33,45 +33,53 @@ $(document).ready(function() {
       },
       error: function(err){ alert(JSON.stringify(err)) }
     });
-  });
-
-  // Await connections from others
-  socket.on('join', function(data) {
-    socket.emit('join', {room : data.room, lang : window.localStorage.language})
-    setUpChatBox(data.id, data.lang)
-  })
-  socket.on('joined', function(data) {
-    setUpChatBox(data.id, data.lang)
-  })
-  // Close a connection.
-  $('#close').click(function() {
-    socket.close();
-  });
-
-  // Send a chat message to all active connections.
-  $('#send').submit(function(e) {
-    e.preventDefault();
-    // For each active connection, send the message.
-    var msg = $('#text').val();
-    eachActiveConnection(function(peerId, $c) {
-      socket.emit('chat', {id: socket.id, text: msg})
-      $c.find('.messages').append('<div><span class="you">You: </span>' + msg
-        + '</div>');
+    
+    // Await connections from others
+    socket.on('join', function(data) {
+      socket.emit('join', {room : data.room, lang : window.localStorage.language})
+      $('#connect').text('Connection Found')
+      $('#connect').attr('disabled', 'disabled')
+      setUpChatBox(data.id, data.lang)
+    })
+    socket.on('joined', function(data) {
+      setUpChatBox(data.id, data.lang)
+    })
+    
+    // Close a connection.
+    $('#close').click(function() {
+      socket.close();
     });
-    $('#text').val('');
-    $('#text').focus();
+    // Send a chat message to all active connections.
+    $('#send').submit(function(e) {
+      e.preventDefault();
+      // For each active connection, send the message.
+      var msg = $('#text').val();
+      eachActiveConnection(function(peerId, $c) {
+        socket.emit('chat', {id: socket.id, text: msg})
+        $c.find('.messages').append('<div><span class="you">You: </span>' + msg
+          + '</div>');
+      });
+      $('#text').val('');
+      $('#text').focus();
+    });
+    $('.connection').on('click', function() {
+      if ($(this).attr('class').indexOf('active') === -1) {
+        $(this).addClass('active');
+      } else {
+        $(this).removeClass('active');
+      }
+    });
   });
-  $('.connection').on('click', function() {
-    if ($(this).attr('class').indexOf('active') === -1) {
-      $(this).addClass('active');
-    } else {
-      $(this).removeClass('active');
-    }
-  });
-  $('#match').click(function(e) {
-    findmatch();
-  });
-
+  //Initializes Chatbox
+  function setUpChatBox(target, language) {
+    lang = language;
+    var chatbox = $('#message').addClass('connection').addClass('active').attr('id', target);
+    var header = $('<h1></h1>').html('Chat with <strong>' + target + '</strong>');
+    var messages = $('<div><em>Peer connected.</em></div>').addClass('messages');
+    chatbox.append(header);
+    chatbox.append(messages);
+    connectedPeers[target] = true;
+  }
   // Goes through each active peer and calls FN on its connections.
   function eachActiveConnection(fn) {
     var actives = $('.active');
@@ -88,6 +96,9 @@ $(document).ready(function() {
     });
   }
 
+  $('#match').click(function(e) {
+    findmatch();
+  });
 });// Document ready
 
 
@@ -123,6 +134,7 @@ function findmatch()
       console.log("connection disrupted");
     }
   });
+
 }
 
 // Show this peer's ID.
@@ -163,16 +175,6 @@ socket.on('kill', function(data) {
     $('#connect').text('Connect')
 });
 
-
-function setUpChatBox(target, language) {
-  lang = language;
-  var chatbox = $('#message').addClass('connection').addClass('active').attr('id', target);
-  var header = $('<h1></h1>').html('Chat with <strong>' + target + '</strong>');
-  var messages = $('<div><em>Peer connected.</em></div>').addClass('messages');
-  chatbox.append(header);
-  chatbox.append(messages);
-  connectedPeers[target] = true;
-}
 
 socket.on('error', function(err) {
   console.log(JSON.stringify(err));

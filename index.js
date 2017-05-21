@@ -20,7 +20,7 @@ io.on('connection', function(client){
   console.log(client.id + ' connected');
   client.on('chat', function(data){
     console.log(data)
-    client.broadcast.to(connections[client.id]).emit(data)
+    client.broadcast.to(connections[client.id]).emit('chat', data)
   });
   client.on('room', function(data){
     console.log('room ' + counter + ' established')
