@@ -57,7 +57,7 @@ function call() {
       if(!call.open)
       {
         $('#call').attr('disabled', 'disabled')
-        $('#call').text("didnt pick up")
+        $('#call').text("didn't pick up")
       }
     }, 10000)
 
