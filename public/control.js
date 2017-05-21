@@ -63,7 +63,7 @@ $(document).ready(function() {
       call()
     })
     // Send a chat message to all active connections.
-    $('#send').submit(function(e) {
+    $('#chatbox').submit(function(e) {
       e.preventDefault();
       // For each active connection, send the message.
       var msg = $('#text').val();
