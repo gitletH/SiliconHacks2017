@@ -1,8 +1,8 @@
 var express = require('express'),
+    app = express(),
     path = require('path'),
     server = require('http').Server(app),
     io = require('socket.io')(server),
-    app = express(),
     port = 3000,
     bodyParser = require('body-parser');
 require('dotenv-safe').load();
