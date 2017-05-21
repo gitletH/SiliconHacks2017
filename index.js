@@ -1,9 +1,9 @@
 var express = require('express'),
     path = require('path'),
-    http = require("http"),
+    server = require('http').Server(app),
+    io = require('socket.io')(server),
     app = express(),
     port = 3000,
-    io = require("socket.io")(http), // web socket external module
     bodyParser = require('body-parser');
 require('dotenv-safe').load();
 app.use(bodyParser.urlencoded({ extended: true }));
@@ -11,7 +11,8 @@ app.use(bodyParser.json());
 var routes = require('./api/routes/routes.js');
 routes(app);
 app.use(express.static(__dirname + '/public'));
-app.listen(process.env.PORT || port);
+server.listen(process.env.PORT || port);
+
 console.log("working on " + process.env.PORT);
 var counter = 0;
 var connections = {};
