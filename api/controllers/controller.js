@@ -75,6 +75,7 @@ exports.get_match_text = function(req, res){
   else
   {
     var stuff = tQue.pop();
+    console.log(stuff);
     res.json(stuff);
   }
 };
