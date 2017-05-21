@@ -55,6 +55,7 @@ $(document).ready(function() {
       $('#connect').text('Connect')
       $('#call').removeAttr('disabled')
       $('#call').text('Videocall')
+      mediapromise = null;
     });
     // Send a chat message to all active connections.
     $('#send').submit(function(e) {
@@ -181,6 +182,9 @@ socket.on('kill', function(data) {
     connectedPeers[data] = false;
     $('#connect').removeAttr('disabled')
     $('#connect').text('Connect')
+    $('#call').removeAttr('disabled')
+    $('#call').text('Videocall')
+    mediapromise = null;
 });
 
 

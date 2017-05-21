@@ -40,7 +40,7 @@ function call() {
       display(remote);
     })
     $('body').on('click', '#call', function(e) {
-      call.close()
+      peer.destroy(true)
     })
     peer.on('close', function() {
       $('#call').text("call ended")
