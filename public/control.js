@@ -52,7 +52,7 @@ $(document).ready(function() {
     // For each active connection, send the message.
     var msg = $('#text').val();
     eachActiveConnection(function(peerId, $c) {
-      socket.emit('chat', socket.id, msg)
+      socket.emit('chat', {id: socket.id, text: msg})
       $c.find('.messages').append('<div><span class="you">You: </span>' + msg
         + '</div>');
     });
@@ -127,7 +127,7 @@ function findmatch()
 
 
 socket.on('chat', function(data) {
-  messages.append('<div><span class="peer">' + data.sender + '</span>: <p>' + data.text +
+  messages.append('<div><span class="peer">' + data.id + '</span>: <p>' + data.text +
     '</p>');
   if(window.localStorage.language !== lang)
   {

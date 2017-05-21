@@ -19,7 +19,7 @@ var connections = {};
 io.on('connection', function(client){
   console.log(client.id + ' connected');
   client.on('chat', function(data){
-
+    client.broadcast.to(connections[client.id]).emit(data)
   });
   client.on('room', function(data){
     console.log('room ' + counter + ' established')
@@ -37,7 +37,7 @@ io.on('connection', function(client){
   })
   client.on('disconnect', function(client){
     console.log(client.id + ' disconnected');
-    client.to(connections[client.id]).emit('kill', client.id)
+    client.broadcast.to(connections[client.id]).emit('kill', client.id)
   })
 });
 
