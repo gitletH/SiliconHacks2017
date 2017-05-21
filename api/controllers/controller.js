@@ -64,7 +64,7 @@ exports.get_user = function(req, res) {
 };
 
 exports.get_match_text = function(req, res){
-  console.log('user ' + req.body.user + 'trys to connect');
+  console.log('user ' + req.body.user + ' trys to connect');
   if (tQue.length === 0)
   {
     var usr = req.body.user;

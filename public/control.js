@@ -29,7 +29,7 @@ $(document).ready(function() {
           socket.emit('room', {id : requested, lang : window.localStorage.language})
         }
       },
-      error: function(err){ alert(err) }
+      error: function(err){ alert(JSON.stringify(err)) }
     });
   });
 
