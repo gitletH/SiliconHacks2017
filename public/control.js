@@ -63,7 +63,7 @@ $(document).ready(function() {
       call()
     })
     // Send a chat message to all active connections.
-    $('#chatbox').submit(function(e) {
+    $('#chatinput').submit(function(e) {
       e.preventDefault();
       // For each active connection, send the message.
       var msg = $('#text').val();
@@ -119,7 +119,7 @@ $(document).ready(function() {
 
 function enableFeatures() {
   $('#connect').text('Connection Found')
-  $('#connect').attr('disabled', 'disabled')
+  $('#connect').attr('disabled', '')
   $('#call').removeAttr('disabled')
   $('#call').text('Videocall')
   $('#send').removeAttr('disabled')
@@ -128,9 +128,9 @@ function enableFeatures() {
 
 
 function disableFeatures() {
-  $('#call').attr('disabled', 'disabled')
+  $('#call').attr('disabled', '')
   $('#call').text('Connect First before calling')
-  $('#send').attr('disabled', 'disabled')
+  $('#send').attr('disabled', '')
   $('#send').text('Connect First before messaging')
   $('#connect').removeAttr('disabled')
   $('#connect').text('Connect')
