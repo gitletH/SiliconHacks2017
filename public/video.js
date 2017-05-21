@@ -35,7 +35,7 @@ function call() {
       }
     })
     socket.on('calldata', function(data){
-      peer.signal(data)
+      peer.signal(JSON.parse(data))
     })
 
 
@@ -94,7 +94,7 @@ function answer(data) {
       socker.emit('calldata', JSON.stringify(data, null, 4))
     })
     socket.on('calldata', function(data){
-      peer.signal(data)
+      peer.signal(JSON.parse(data))
     })
 
 
