@@ -41,7 +41,7 @@ $(document).ready(function() {
     // Await connections from others
     socket.on('join', function(data) {
       socket.emit('join', {room : data.room, lang : window.localStorage.language})
-
+      enableFeatures()
       setUpChatBox(data.id, data.lang)
     })
     socket.on('joined', function(data) {
@@ -204,10 +204,7 @@ socket.on('kill', function(data) {
     alert(data + ' has left the chat.');
     $('.connection').filter(function(){return $(this).attr('id') === data}).remove();
     connectedPeers[data] = false;
-    $('#connect').removeAttr('disabled')
-    $('#connect').text('Connect')
-    $('#call').removeAttr('disabled')
-    $('#call').text('Videocall')
+    disableFeatures();
     mediapromise = null;
 });
 
@@ -220,6 +217,7 @@ socket.on('error', function(err) {
 })
 // Make sure things clean up properly.
 window.onunload = window.onbeforeunload = function(e) {
+  disableFeatures()
   if(peer) {
     peer.destroy();
   }
