@@ -173,7 +173,7 @@ function findmatch() {
 
 
 socket.on('chat', function(data) {
-  $('.messages').append('<div><span class="peer">' + data.id + '</span>: <p>' + data.text +
+  $('.messages').append('<div><p><strong>' + data.id + '</strong>:' + data.text +
     '</p>');
   if(window.localStorage.language !== lang)
   {
