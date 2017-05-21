@@ -48,6 +48,8 @@ $(document).ready(function() {
     // Close a connection.
     $('#close').click(function() {
       socket.close();
+      $('#connect').removeAttr('disabled')
+      $('#connect').text('Connect')
     });
     // Send a chat message to all active connections.
     $('#send').submit(function(e) {
