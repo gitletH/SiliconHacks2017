@@ -1,5 +1,6 @@
 'use strict';
 process.env = require('dotenv-safe').load().parsed;
+console.log(provess.env)
 //var cfg = JSON.parse(fs.readFileSync('./cfg.json', 'utf8'));
 // load the Cloudant library
 var cloudantURL = "https://" + process.env.CLOUDANT_USER + ":" + process.env.CLOUDANT_PSWD + "@" + process.env.CLOUDANT_HOST + ".cloudant.com";
