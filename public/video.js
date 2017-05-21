@@ -1,5 +1,6 @@
 var peer = null;
 var mediapromise = null;
+var incall = false;
 function display(remote) {
   var video = document.querySelector('video');
   video.srcObject = remote;
