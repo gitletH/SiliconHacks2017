@@ -94,6 +94,7 @@ function answer(data) {
       socker.emit('calldata', data)
     })
     socket.on('calldata', function(data){
+      console.log(data);
       peer.signal(JSON.parse(data))
     })
 
