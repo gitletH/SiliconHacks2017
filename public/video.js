@@ -19,7 +19,7 @@ function call() {
   mediapromise.then(function(stream) {
     stream.getVideoTracks()[0].enabled = !$('#novideo').checked;
     stream.getAudioTracks()[0].enabled = !$('#mute').checked;
-    peer = new SimplePeer({ initiator: true, stream: stream})
+    peer = new SimplePeer({ initiator: true, config: { iceServers: [ { url: 'stun:stun.l.google.com:19302' } ] }, stream: stream})
     $('#call').attr('disabled', 'disabled')
     $('#call').text("calling...")
 
@@ -86,7 +86,7 @@ function answer(data) {
     stream.getVideoTracks()[0].enabled = !$('#novideo').checked;
     stream.getAudioTracks()[0].enabled = !$('#mute').checked;
     // Answer the call, providing our MediaStream
-    peer = new SimplePeer({initiator: false, stream: stream})
+    peer = new SimplePeer({initiator: false, config: { iceServers: [ { url: 'stun:stun.l.google.com:19302' } ] }, stream: stream})
     $('#call').attr('disabled', 'disabled')
     $('#call').text("answering call...")
 
