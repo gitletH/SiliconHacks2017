@@ -41,10 +41,10 @@ io.on('connection', function(client){
     client.broadcast.to(connections[client.id]).emit('kill', client.id)
   })
   client.on('call', function(data){
-
+    client.broadcast.to(connections[client.id]).emit('call', data)
   })
   client.on('answered', function(data){
-
+    client.broadcast.to(connections[client.id]).emit('answer', data)
   })
 });
 
