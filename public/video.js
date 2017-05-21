@@ -31,7 +31,7 @@ function call() {
       }
       else
       {
-        socker.emit('calldata', JSON.stringify(data, null, 4))
+        socket.emit('calldata', JSON.stringify(data, null, 4))
       }
     })
     socket.on('calldata', function(data){
