@@ -9,10 +9,6 @@ if(window.localStorage.getItem('_id') === null)
 
 $(document).ready(function() {
   //open a connection
-  $('#call').on('click', function(event) {
-  if(socket.id)
-    call()
-  })
   $('#connect').on('click', function(event) {
     socket.open()
     console.log('opening connection');
@@ -30,8 +26,7 @@ $(document).ready(function() {
         var requested = match.id;
         if (!connectedPeers[requested]) {
           socket.emit('room', {id : requested, lang : window.localStorage.language})
-          $('#connect').text('Connection Found')
-          $('#connect').attr('disabled', 'disabled')
+          enableFeatures();
         }
       },
       error: function(err){
@@ -46,8 +41,7 @@ $(document).ready(function() {
     // Await connections from others
     socket.on('join', function(data) {
       socket.emit('join', {room : data.room, lang : window.localStorage.language})
-      $('#connect').text('Connection Found')
-      $('#connect').attr('disabled', 'disabled')
+
       setUpChatBox(data.id, data.lang)
     })
     socket.on('joined', function(data) {
@@ -61,24 +55,28 @@ $(document).ready(function() {
         peer.destroy();
       }
       socket.close();
-      $('#connect').removeAttr('disabled')
-      $('#connect').text('Connect')
-      $('#call').removeAttr('disabled')
-      $('#call').text('Videocall')
+      disableFeatures();
       mediapromise = null;
     });
+    // Call a peer
+    $('#call').on('click', function(event) {
+      call()
+    })
     // Send a chat message to all active connections.
     $('#send').submit(function(e) {
       e.preventDefault();
       // For each active connection, send the message.
       var msg = $('#text').val();
-      eachActiveConnection(function(peerId, $c) {
-        socket.emit('chat', {id: socket.id, text: msg})
-        $c.find('.messages').append('<div><span class="you">You: </span>' + msg
-          + '</div>');
-      });
-      $('#text').val('');
-      $('#text').focus();
+      if(msg)
+      {
+        eachActiveConnection(function(peerId, $c) {
+          socket.emit('chat', {id: socket.id, text: msg})
+          $c.find('.messages').append('<div><span class="you">You: </span>' + msg
+            + '</div>');
+        });
+        $('#text').val('');
+        $('#text').focus();
+      }
     });
     $('.connection').on('click', function() {
       if ($(this).attr('class').indexOf('active') === -1) {
@@ -119,11 +117,26 @@ $(document).ready(function() {
   });
 });// Document ready
 
+function enableFeatures() {
+  $('#connect').text('Connection Found')
+  $('#connect').attr('disabled', 'disabled')
+  $('#call').removeAttr('disabled')
+  $('#call').text('Videocall')
+  $('#send').removeAttr('disabled')
+  $('#send').text('Send Message')
+}
 
 
+function disableFeatures() {
+  $('#call').attr('disabled', 'disabled')
+  $('#call').text('Connect First before calling')
+  $('#send').attr('disabled', 'disabled')
+  $('#send').text('Connect First before messaging')
+  $('#connect').removeAttr('disabled')
+  $('#connect').text('Connect')
+}
 
-function findmatch()
-{
+function findmatch() {
   //output twitter data
   $('#hobbies').append('<p>Analyzing twitter accounts...</p>')
   $.ajax({
