@@ -26,12 +26,12 @@ function call() {
     peer.on('signal', function(data) {
       if(first)
       {
-        socket.emit('call', JSON.stringify(data))
+        socket.emit('call', data)
         first = false;
       }
       else
       {
-        socket.emit('calldata', JSON.stringify(data))
+        socket.emit('calldata', data)
       }
     })
     socket.on('calldata', function(data){
@@ -91,7 +91,7 @@ function answer(data) {
     $('#call').text("answering call...")
 
     peer.on('signal', function(data) {
-      socker.emit('calldata', JSON.stringify(data))
+      socker.emit('calldata', data)
     })
     socket.on('calldata', function(data){
       peer.signal(data)

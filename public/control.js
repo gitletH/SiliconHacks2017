@@ -137,6 +137,7 @@ function disableFeatures() {
 }
 
 function findmatch() {
+  disableFeatures();
   //output twitter data
   $('#hobbies').append('<p>Analyzing twitter accounts...</p>')
   $.ajax({
