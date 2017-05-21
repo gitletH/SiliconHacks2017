@@ -94,7 +94,10 @@ function answer(data) {
       socker.emit('calldata', data)
     })
     socket.on('calldata', function(data){
-      console.log(data);
+      //damn ICE people
+      if(data.candidate && data.candidate.candidate && data.candidate.candidate.includes("srflx"))
+        return;
+      //damn ICE people 
       peer.signal(data)
     })
 
