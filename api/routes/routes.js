@@ -7,8 +7,6 @@ module.exports = function(app) {
      .get(YDD.get_user)
 
   //match
-  app.route('/match_video')
-    .post(YDD.get_match_video)
   app.route('/match_text')
     .post(YDD.get_match_text)
   app.route('/watson')

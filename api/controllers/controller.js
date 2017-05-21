@@ -63,25 +63,6 @@ exports.get_user = function(req, res) {
   });
 };
 
-/*
-exports.get_match_video = function(req, res) {
-
-if (vQue.length === 0)
-{
-  var usr = req.body.user;
-  var peer = req.body.peer;
-  vQue.push({user: usr, peer: peer});
-
-  res.status(500).send('Wait');
-}
-else
-{
-  var stuff = vQue.pop();
-  res.json(stuff);
-}
-
-};
-*/
 exports.get_match_text = function(req, res){
   console.log('user ' + req.body.user + 'trys to connect');
   if (tQue.length === 0)
