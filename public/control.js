@@ -9,6 +9,10 @@ if(window.localStorage.getItem('_id') === null)
 
 $(document).ready(function() {
   //open a connection
+  $('#call').on('click', function(event) {
+  if(socket.id)
+    call()
+  })
   $('#connect').on('click', function(event) {
     socket.open()
     console.log('opening connection');
@@ -187,6 +191,9 @@ socket.on('kill', function(data) {
     mediapromise = null;
 });
 
+socket.on('call', function(data){
+  answer(data)
+})
 
 socket.on('error', function(err) {
   console.log(JSON.stringify(err));
