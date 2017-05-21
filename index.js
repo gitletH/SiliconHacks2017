@@ -25,7 +25,7 @@ io.on('connection', function(client){
     console.log('room ' + counter + ' established')
     client.join(counter)
     connections[client.id] = counter;
-    socket.to(data.id).emit('join', {id : client.id, room : counter, lang : data.lang})
+    client.to(data.id).emit('join', {id : client.id, room : counter, lang : data.lang})
     counter += 1
   })
   client.on('join', function(data){
@@ -33,11 +33,11 @@ io.on('connection', function(client){
     console.log('room ' + roomnum + ' filled')
     client.join(roomnum)
     connections[client.id] = roomnum;
-    socket.broadcast.to(roomnum).emit('joined', {id : client.id, lang : data.lang})
+    client.broadcast.to(roomnum).emit('joined', {id : client.id, lang : data.lang})
   })
   client.on('disconnect', function(client){
     console.log(client.id + ' disconnected');
-    socket.to(connections[client.id]).emit('kill', client.id)
+    client.to(connections[client.id]).emit('kill', client.id)
   })
 });
 
