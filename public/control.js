@@ -138,8 +138,9 @@ function disableFeatures() {
 
 function findmatch() {
   disableFeatures();
+  $('#match').attr('disabled', '')
   //output twitter data
-  $('#hobbies').append('<p>Analyzing twitter accounts...</p>')
+  $('#hobbies').text('<p>Analyzing twitter accounts...</p>')
   $.ajax({
     type: 'POST',
     url: 'https://cit-i-zen.herokuapp.com:443/watson/',
