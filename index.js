@@ -35,7 +35,7 @@ io.on('connection', function(client){
     connections[client.id] = roomnum;
     client.broadcast.to(roomnum).emit('joined', {id : client.id, lang : data.lang})
   })
-  client.on('disconnect', function(client){
+  client.on('disconnect', function(){
     console.log(client.id + ' disconnected');
     client.broadcast.to(connections[client.id]).emit('kill', client.id)
   })
