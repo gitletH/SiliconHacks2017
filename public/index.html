@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html>
-  <head title="citizen">
+  <head title="CITiZEN">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/skeleton/2.0.4/skeleton.min.css" rel="stylesheet" type="text/css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
     <link rel="stylesheet" id="bulma" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.3.2/css/bulma.min.css" />
@@ -46,7 +46,19 @@
               Click to match with another earthling.
             </h2>
           </div>
-          <div id="chat">
+          <div id="actions">
+            <br>
+            <button id='connect'>Connect</button>
+            <button id='close'>Close selected connections</button>
+            <div id="chat">
+              <br>
+              <form id="chatinput">
+                <input type="text" id="text" placeholder="Enter message">
+                <input id ="send" class="button" type="submit" value="Send to selected peers">
+              </form>
+              <br>
+              <div id="message"></div>
+            </div>
             <div id="video">
               <video autoplay></video>
               <div class="actions">
@@ -56,18 +68,6 @@
               </div>
             </div>
             <br>
-            <div class="actions">
-              <br/>
-              <button id='connect'>Connect</button>
-              <br/>
-              <form id="chatinput">
-                <input type="text" id="text" placeholder="Enter message">
-                <input id ="send" class="button" type="submit" value="Send to selected peers">
-              </form>
-              <div id="message"></div>
-              <button id="close">Close selected connections</button>
-            </div>
-            <br/>
           </div>
           <div id='hobbies'></div>
         </div> <!-- End #chat div -->
@@ -76,7 +76,7 @@
 
 <!-- Hero footer: will stick at the bottom -->
 <div class="hero-foot">
-  <p>SiliconHacks 2017</p>
+  <p>Brought to you by PaleBlueDot</p>
 </div>
 </section>
 
@@ -108,6 +108,10 @@
   <td id="gender"></td>
 </tr>
 <tr>
+  <td>Sexual Orientation</td>
+  <td id="orientation"></td>
+</tr>
+<tr>
   <td>Religion</td>
   <td id="religion"></td>
 </tr>
@@ -125,7 +129,7 @@
 <!-- </div> -->
 <script>
   var isToggled = false;
-  $('#chat').toggle();
+  $('#actions').toggle();
   $('.removed').remove();
   /* Open the sidenav */
   function toggle() {
@@ -145,11 +149,13 @@
   document.getElementById("country").innerHTML = window.localStorage.getItem('Country');
   document.getElementById("ethnicity").innerHTML = window.localStorage.getItem('Ethnicity');
   document.getElementById("gender").innerHTML = window.localStorage.getItem('Gender');
+  document.getElementById("orientation").innerHTML = window.localStorage.getItem('Sexual Orientation');
   document.getElementById("religion").innerHTML = window.localStorage.getItem('Religion');
+
 
   function match() {
   $('#match').toggle(600);
-  $('#chat').toggle(600);
+  $('#actions').toggle(600);
   }
   var user = window.localStorage.getItem('user');
   console.log(user);
