@@ -33,8 +33,8 @@ $(document).ready(function() {
 		var o = $('#orientation').prop('value');
 		var c = '';
 		$('#ethnicity').find('input').each(function(index, el) {
-			if(el.prop('checked'))
-				c += el.prop('value') + ', ';
+			if($(el).prop('checked'))
+				c += $(el).prop('value') + ', ';
 		});
 		c.slice(c.length -2);
 		var t = $('#twitter').prop('value');
