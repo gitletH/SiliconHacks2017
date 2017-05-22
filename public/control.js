@@ -28,7 +28,7 @@ $(document).ready(function() {
       url: 'https://cit-i-zen.herokuapp.com:443/match_text/',
       data: usrdata,
       success: function(match){
-        console.log('matched with ' + match.id);
+        console.log('matched with ' + match.id);        
         var requested = match.id;
         if (!connectedPeers[requested]) {
           socket.emit('room', {id : requested, lang : window.localStorage.language})

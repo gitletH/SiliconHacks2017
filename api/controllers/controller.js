@@ -76,7 +76,7 @@ exports.get_match_text = function(req, res){
 //      ,"Interests": 
       }
     },
-    "fields":["socket", "_id"],
+    "fields":["socket", "_id", "_rev"],
     "sort": [{"position:number": "asc"}]
   }, function(err, match){
     if(err)
