@@ -17,7 +17,7 @@ function advance() {
 	$('#background').toggle(600);
 }
 $(document).ready(function() {
-	('#advance').on('click', function(event) {
+	$('#advance').on('click', function(event) {
 		advance();
 	});
 });
