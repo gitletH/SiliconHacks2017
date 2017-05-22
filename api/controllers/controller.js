@@ -7,8 +7,8 @@ var Cloudant = require('cloudant'),
   cloudant = Cloudant({
     url: cloudantURL
   }),
-  db = cloudant.db.use("users");
-  var queue = cloudant.db.use("queue");
+  db = cloudant.db.use("users"),
+  queue = cloudant.db.use("queue");
 
 var PersonalityInsightsV3 = require('watson-developer-cloud/personality-insights/v3');
 var personality_insights = new PersonalityInsightsV3({
