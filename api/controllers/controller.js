@@ -7,7 +7,7 @@ var Cloudant = require('cloudant'),
     account: process.env.CLOUDANT_HOST,
     key: process.env.CLOUDANT_USER, 
     password: process.env.CLOUDANT_PSWD
-  } function(er, cloudant, reply) {}),
+  }, function(er, cloudant, reply) {}),
   users = cloudant.db.use("users"),
   queue = cloudant.db.use("queue");
 
