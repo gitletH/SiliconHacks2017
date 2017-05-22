@@ -25,6 +25,7 @@ $(document).ready(function() {
   	var gender = '';
 	var orientation = '';
   	var age = 0;
+  	var twitter = '';
 	$('#advance').on('click', function(event) {
 		username = $('#username').val()
 		password = $('#password').val()
@@ -37,11 +38,11 @@ $(document).ready(function() {
 		religion = $('#religion').val();
 		gender = $('#gender').val();
 		orientation = $('#orientation').val();
-		$('#ethnicity').each(function(index, el) {
+		$('#ethnicity').find('input').each(function(index, el) {
 			if(el.prop('checked'))
 				ethnicity += el.attr('value') + ', ';
 		});
 		ethnicity.slice(ethnicity.length -2);
-
+		twitter = $('#twitter').val().;
 	})
 });
