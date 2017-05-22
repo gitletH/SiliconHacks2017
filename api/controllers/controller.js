@@ -6,9 +6,9 @@ var cloudantURL = "https://" + process.env.CLOUDANT_USER + ":" + process.env.CLO
 var Cloudant = require('cloudant'),
   cloudant = Cloudant({
     url: cloudantURL
-  }),
-  users = cloudant.db.use("users"),
-  queue = cloudant.db.use("queue");
+  });
+var users = cloudant.db.use("users");
+var queue = cloudant.db.use("queue");
 
 var PersonalityInsightsV3 = require('watson-developer-cloud/personality-insights/v3');
 var personality_insights = new PersonalityInsightsV3({
