@@ -17,30 +17,30 @@ function advance() {
 	$('#background').toggle(600);
 }
 $(document).ready(function() {
-	var username = '';
-	var password = '';
+	var user = '';
+	var pass = '';
 	$('#advance').on('click', function(event) {
-		username = $('#username').val()
-		password = $('#password').val()
+		user = $("#username").val()
+		pass = $('#password').val()
 		advance();
 	});
 	$('#bginfo').submit(function(e){
 		e.preventDefault();
-		var age = $('#age').prop('value');
-		var language = $('#language').prop('value');
-		var religion = $('#religion').prop('value');
-		var gender = $('#gender').prop('value');
-		var orientation = $('#orientation').prop('value');
-		var ethnicity = '';
+		var a = $('#age').prop('value');
+		var l = $('#language').prop('value');
+		var r = $('#religion').prop('value');
+		var g = $('#gender').prop('value');
+		var o = $('#orientation').prop('value');
+		var c = '';
 		$('#ethnicity').find('input').each(function(index, el) {
 			if(el.prop('checked'))
-				ethnicity += el.prop('value') + ', ';
+				c += el.prop('value') + ', ';
 		});
-		ethnicity.slice(ethnicity.length -2);
-		var twitter = $('#twitter').prop('value');
-		if(twitter.substring(0, 1) !== "@")
+		c.slice(c.length -2);
+		var t = $('#twitter').prop('value');
+		if(t.substring(0, 1) !== "@")
 		{
-			twitter = "@" +twitter;
+			t = "@" +t;
 		}
 
 	})
