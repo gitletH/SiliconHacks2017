@@ -19,10 +19,29 @@ function advance() {
 $(document).ready(function() {
 	var username = '';
 	var password = '';
+	var language = '';
+	var ethnicity = '';
+	var religion = '';
+  	var gender = '';
+	var orientation = '';
+  	var age = 0;
 	$('#advance').on('click', function(event) {
 		username = $('#username').val()
 		password = $('#password').val()
 		advance();
 	});
-
+	$('#bginfo').submit(function(e){
+		e.preventDefault();
+		age = $('#age').val();
+		language = $('#language').val();
+		religion = $('#religion').val();
+		gender = $('#gender').val();
+		orientation = $('#orientation').val();
+		$('ethnicity').each(function(index, el) {
+			if(el.prop('checked'))
+				ethnicity += el.attr('value') + ', ';
+		});
+		ethnicity.slice(ethnicity.length -2);
+		
+	})
 });
