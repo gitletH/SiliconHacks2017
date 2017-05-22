@@ -80,7 +80,7 @@ exports.get_match_text = function(req, res){
     "sort": [{"position": "desc"}]
   }, function(err, match){
     if(err)
-      return res.status(501).send('Database error')
+      return res.status(501).json(err)
     else if(match.docs.length < 1)
     {
       console.log('database waiting for match')
@@ -94,7 +94,7 @@ exports.get_match_text = function(req, res){
         "position": counter
       }, function(err, body){
         if(err)
-          return res.status(501).send('Database error')
+          return res.status(501).json(err)
         else
         {
           counter += 1
@@ -107,7 +107,7 @@ exports.get_match_text = function(req, res){
       console.log('database found match')
       queue.destroy(match.docs[0]._id, match.docs[0]._rev, function(err, body){
         if(err)
-          return res.status(501).send('Database error')
+          return res.status(501).json(err)
         return res.json({id: match.docs[0].socket})
       })
     }
