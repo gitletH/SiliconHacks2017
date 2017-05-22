@@ -214,6 +214,7 @@ socket.on('chat', function(data) {
 socket.on('kill', function(data) {
     alert(data + ' has left the chat.');
     $('.connection').filter(function(){return $(this).attr('id') === data}).remove();
+    $('#message').empty();
     connectedPeers[data] = false;
     disableFeatures();
     mediapromise = null;
