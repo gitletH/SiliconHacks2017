@@ -65,7 +65,6 @@ exports.get_user = function(req, res) {
 
 exports.get_match_text = function(req, res){
   console.log('user ' + req.body.user + ' trys to connect');
-  doc.socket = reqbody.socketid;
   queue.find({
     "selector":{
       "$not":{
