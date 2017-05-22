@@ -42,6 +42,30 @@ $(document).ready(function() {
 		{
 			t = "@" +t;
 		}
-
+		var data =   
+			{"username": user,
+			"password": pass,
+			"twitter": t,
+			"language": l,
+			"Ethnicity": c,
+			"Gender": g,
+			"Age": a,
+			"Religion": r,
+			"Sexual Orientation": o}
+		console.log(data)
+		$.ajax({
+		type: 'POST',
+		url: 'https://cit-i-zen.herokuapp.com:443/watson/',
+		data:{
+		  data
+		},
+		success: function(data){
+			login(user, pass)
+		},
+		error: function(err){
+			console.log("could not make user");
+			window.location.replace("login.html");
+		}
+		});
 	})
 });

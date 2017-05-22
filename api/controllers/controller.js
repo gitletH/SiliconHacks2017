@@ -30,13 +30,13 @@ var twitter = require('./twitter.js');
 var counter = 0;
 
 // create a document
-var createDocument = function(newUser, callback) {
-  console.log("Creating document 'mydoc'");
-  // we are specifying the id of the document so we can update and delete it later
-  users.insert(newUser, function(err, data) {
-    console.log("Error:", err);
-    console.log("Data:", data);
-    callback(err, data);
+exports.new_user = function(req, res) {
+  console.log("Creating user" + req.body.user);
+  users.insert(req.body, function(err, data) {
+    if(err)
+      return res.status(500).json(err)
+    else
+      return res.json("Success!")
   });
 };
 
@@ -68,11 +68,11 @@ exports.get_match_text = function(req, res){
   queue.find({
     "selector":{
       "$not":{
-        "ethnicity": req.body.ethnicity,
-        "gender": req.body.gender,
-        "age": req.body.age,
-        "religion": req.body.religion,
-        "sexual Orientation": req.body.orientation
+        "Ethnicity": req.body.ethnicity,
+        "Gender": req.body.gender,
+        "Age": req.body.age,
+        "Religion": req.body.religion,
+        "Sexual Orientation": req.body.orientation
 //      ,"Interests": 
       }
     },
