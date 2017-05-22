@@ -12,15 +12,21 @@ $(document).ready(function() {
   $('#connect').on('click', function(event) {
     socket.open()
     console.log('opening connection');
-    var usr = window.localStorage.username;
-    console.log(usr);
+    var usrdata = 
+    {
+      socketid: socket.id,
+      user: window.localStorage.getItem('username'),
+      age: window.localStorage.getItem('Age'),
+      ethnicity: window.localStorage.getItem('Ethnicity'),
+      gender: window.localStorage.getItem('Gender'),
+      religion: window.localStorage.getItem('Religion'),
+      orientation: window.localStorage.getItem('Sexual Orientation')
+    };
+    $('#connect').attr('disabled', '')
     $.ajax({
       type: 'POST',
       url: 'https://cit-i-zen.herokuapp.com:443/match_text/',
-      data:{
-        user: usr,
-        id: socket.id
-      },
+      data: usrdata,
       success: function(match){
         console.log('matched with ' + match.id);
         var requested = match.id;

@@ -1,6 +1,5 @@
 'use strict';
 process.env = require('dotenv-safe').load().parsed;
-console.log(process.env)
 //var cfg = JSON.parse(fs.readFileSync('./cfg.json', 'utf8'));
 // load the Cloudant library
 var cloudantURL = "https://" + process.env.CLOUDANT_USER + ":" + process.env.CLOUDANT_PSWD + "@" + process.env.CLOUDANT_HOST + ".cloudant.com";
@@ -9,6 +8,7 @@ var Cloudant = require('cloudant'),
     url: cloudantURL
   }),
   db = cloudant.db.use("users");
+  var queue = cloudant.db.use("queue");
 
 var PersonalityInsightsV3 = require('watson-developer-cloud/personality-insights/v3');
 var personality_insights = new PersonalityInsightsV3({
@@ -27,8 +27,7 @@ var language_translator = new LanguageTranslatorV2({
 
 var twitter = require('./twitter.js');
 
-var vQue = [];
-var tQue = [];
+counter = 0;
 
 // create a document
 var createDocument = function(newUser, callback) {
@@ -66,20 +65,60 @@ exports.get_user = function(req, res) {
 
 exports.get_match_text = function(req, res){
   console.log('user ' + req.body.user + ' trys to connect');
-  if (tQue.length === 0)
-  {
-    var usr = req.body.user;
-    var id = req.body.id;
-    tQue.push({user: usr, id: id});
-    res.status(500).send('Wait');
-  }
-  else
-  {
-    var stuff = tQue.pop();
-    console.log(stuff);
-    res.json(stuff);
-  }
-};
+    connect(req.body, result)
+}
+
+var connect = function(reqbody, res) {
+  var doc = res.docs[0]
+  doc.socket = reqbody.socketid;
+  queue.find({
+    "selector":{
+      "$not":{
+        "ethnicity": reqbody.ethnicity,
+        "gender": reqbody.gender,
+        "age": reqbody.age,
+        "religion": reqbody.religion,
+        "sexual Orientation": reqbody.orientation
+//      ,"Interests": 
+      }
+    },
+    "fields":["socket"],
+    "sort": [{"position": "desc"}]
+  }, function(er, match){
+    if(err)
+      return res.status(501).send('Database error')
+    else if(match.docs.length < 1)
+    {
+      console.log('database waiting for match')
+      queue.insert({
+        "ethnicity": reqbody.ethnicity,
+        "gender": reqbody.gender,
+        "age": reqbody.age,
+        "religion": reqbody.religion,
+        "sexual Orientation": reqbody.orientation,
+        "socket": reqbody.socketid,
+        "position": counter
+      }, function(err, body){
+        if(err)
+          return res.status(501).send('Database error')
+        else
+        {
+          counter += 1
+          res.status(500).send('Wait')
+        }
+      })
+    }
+    else
+    {
+      console.log('database found match')
+      queue.destroy(match.docs.[0]._id, match.docs[0]._rev, function(err, body){
+        if(err)
+          return res.status(501).send('Database error')
+        return res.json({id: match.docs[0].socket})
+      })
+    }
+  })
+}
 
 exports.watson = function(req, res){
   var promise = twitter.getTweets(req.body.twitter);
