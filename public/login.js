@@ -1,5 +1,6 @@
 function login(user, pass) {
 var client = new HttpClient();
+var serverUrl = "https://cit-i-zen.herokuapp.com:443/user";
 var params = "/";
 params += user;
 params += "/"
