@@ -61,6 +61,7 @@ $(document).ready(function() {
         peer.destroy(true);
       }
       $('.connection').empty();
+      socket.close();
       disableFeatures();
       mediapromise = null;
     });
