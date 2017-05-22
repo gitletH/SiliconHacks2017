@@ -36,7 +36,7 @@ $(document).ready(function() {
 			if($(el).prop('checked'))
 				c += $(el).prop('value') + ', ';
 		});
-		c.slice(c.length -2);
+		c.slice(0, -2);
 		var t = $('#twitter').prop('value');
 		if(t.substring(0, 1) !== "@")
 		{
@@ -55,7 +55,7 @@ $(document).ready(function() {
 		console.log(data)
 		$.ajax({
 		type: 'POST',
-		url: 'https://cit-i-zen.herokuapp.com:443/watson/',
+		url: 'https://cit-i-zen.herokuapp.com:443/new_user/',
 		data:{
 		  data
 		},
