@@ -22,7 +22,7 @@ $(document).ready(function() {
       religion: window.localStorage.getItem('Religion'),
       orientation: window.localStorage.getItem('Sexual Orientation')
     };
-    $('#connect').attr('disabled', true)
+    $('#connect').prop('disabled', true)
     $.ajax({
       type: 'POST',
       url: 'https://cit-i-zen.herokuapp.com:443/match_text/',
@@ -128,30 +128,30 @@ $(document).ready(function() {
 
 function enableFeatures() {
   $('#connect').text('Connection Found')
-  $('#connect').attr('disabled', true)
-  $('#close').removeAttr('disabled')
+  $('#connect').prop('disabled', true)
+  $('#close').removeProp('disabled')
   $('#close').text('Close Connection') 
-  $('#call').removeAttr('disabled')
+  $('#call').removeProp('disabled')
   $('#call').text('Videocall')
-  $('#send').removeAttr('disabled')
+  $('#send').removeProp('disabled')
   $('#send').text('Send Message')
 }
 
 
 function disableFeatures() {
-  $('#call').attr('disabled', true)
+  $('#call').prop('disabled', true)
   $('#call').text('Connect First before calling')
-  $('#send').attr('disabled', true)
+  $('#send').prop('disabled', true)
   $('#send').text('Connect First before messaging')
-  $('#close').attr('disabled', true)
+  $('#close').prop('disabled', true)
   $('#close').text('No Connections to Close') 
-  $('#connect').removeAttr('disabled')
+  $('#connect').removeProp('disabled')
   $('#connect').text('Connect')
 }
 
 function findmatch() {
   disableFeatures();
-  $('#match').attr('disabled', true)
+  $('#match').prop('disabled', true)
   //output twitter data
   $('#hobbies').html('<p>Analyzing twitter accounts...</p>')
   $.ajax({

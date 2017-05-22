@@ -41,7 +41,7 @@ function call() {
 
     peer.on('connect', function(){
       $('#call').text('end call')
-      $('#call').removeAttr('disabled')
+      $('#call').removeProp('disabled')
       incall = true
     })
     peer.on('error', function(err) {
@@ -88,7 +88,7 @@ function answer(data) {
     stream.getAudioTracks()[0].enabled = !$('#mute').checked;
     // Answer the call, providing our MediaStream
     peer = new SimplePeer({initiator: false, config: { iceServers: [ { url: 'stun:stun.l.google.com:19302' } ] }, stream: stream})
-    $('#call').attr('disabled', 'disabled')
+    $('#call').prop('disabled', 'disabled')
     $('#call').text("answering call...")
 
     peer.on('signal', function(data) {
@@ -101,12 +101,12 @@ function answer(data) {
 
     peer.on('connect', function(){
       $('#call').text('end call')
-      $('#call').removeAttr('disabled')
+      $('#call').removeProp('disabled')
       incall = true
     })
     peer.on('error', function(err) {
       console.log(err);
-      $('#call').attr('disabled', 'disabled')
+      $('#call').prop('disabled', 'disabled')
       $('#call').text("can't receive")
     })
 
@@ -122,7 +122,7 @@ function answer(data) {
 
     peer.on('close', function() {
       $('#call').text("call ended")
-      $('#call').attr('disabled', 'disabled')
+      $('#call').prop('disabled', 'disabled')
       incall = false
       mediapromise = null
     })
