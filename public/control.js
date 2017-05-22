@@ -229,6 +229,6 @@ window.onunload = window.onbeforeunload = function(e) {
     peer.destroy();
   }
   if (socket) {
-    socket.close();
+    socket.close(true);
   }
 };
