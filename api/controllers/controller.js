@@ -105,6 +105,7 @@ exports.get_match_text = function(req, res){
     else
     {
       console.log('database found match')
+      console.log(match.docs[0])
       queue.destroy(match.docs[0]._id, match.docs[0]._rev, function(err, body){
         if(err)
           return res.status(501).json(err)
