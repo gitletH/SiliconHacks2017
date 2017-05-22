@@ -58,7 +58,7 @@ $(document).ready(function() {
     $('#close').click(function() {
       if(peer)
       {
-        peer.destroy();
+        peer.destroy(true);
       }
       socket.close();
       disableFeatures();
@@ -226,9 +226,9 @@ socket.on('error', function(err) {
 window.onunload = window.onbeforeunload = function(e) {
   disableFeatures()
   if(peer) {
-    peer.destroy();
+    peer.destroy(true);
   }
   if (socket) {
-    socket.close(true);
+    socket.close();
   }
 };
