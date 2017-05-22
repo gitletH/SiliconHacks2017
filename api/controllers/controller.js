@@ -77,7 +77,7 @@ exports.get_match_text = function(req, res){
       }
     },
     "fields":["socket"],
-    "sort": [{"position": "desc"}]
+    "sort": [{"position:number": "asc"}]
   }, function(err, match){
     if(err)
       return res.status(501).json(err)
