@@ -78,7 +78,7 @@ exports.get_match_text = function(req, res){
     },
     "fields":["socket"],
     "sort": [{"position": "desc"}]
-  }, function(er, match){
+  }, function(err, match){
     if(err)
       return res.status(501).send('Database error')
     else if(match.docs.length < 1)
