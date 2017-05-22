@@ -8,11 +8,7 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script src="https://code.jquery.com/jquery-1.11.1.min.js"></script>
     <script src="https://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.0.1/socket.io.slim.js"></script>
-    <script src="simplepeer.min.js"></script>
-    <script src="control.js"></script>
-    <script src="video.js"></script>
-
+    <script src="account.js"></script>
   </head>
 
   <body>
@@ -26,7 +22,7 @@
               <input type="text" name="username" id="username">
               <p>Password</p>
               <input type="password" name="password" id="password">
-              <button id="advance" name="Next" onclick='javascript: advance()'>
+              <button id="advance" onclick='javascript: advance()'>Next</button>
             </form>
           </div>
           <div id="background">
@@ -94,22 +90,6 @@
     var isToggled = false;
     $('#background').toggle();
     $('.removed').remove();
-    /* Open the sidenav */
-    function toggle() {
-    console.log(isToggled)
-    if (isToggled) {
-    isToggled = false;
-    document.getElementById("sidebar").style.right = "-100%";
-    } else {
-    isToggled = true;
-    document.getElementById("sidebar").style.right = "0";
-    }
-    }
-  
-    function advance() {
-    $('#match').toggle(600);
-    $('#background').toggle(600);
-    }
   </script>
   </body>
 
