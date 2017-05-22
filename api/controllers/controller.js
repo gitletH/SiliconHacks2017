@@ -27,7 +27,7 @@ var language_translator = new LanguageTranslatorV2({
 
 var twitter = require('./twitter.js');
 
-counter = 0;
+var counter = 0;
 
 // create a document
 var createDocument = function(newUser, callback) {
