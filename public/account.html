@@ -38,7 +38,7 @@
                 <input type='checkbox' name='ethnicity' value='Other'>Other
               </div>
               <p>Language (Unfortunately we can only translate so many languages, here they are)</p>
-              <select id='language'>
+              <select id='language' required>
                 <option value='en'>English</option>
                 <option value='ar'>Arabic</option>
                 <option value='de'>German</option>
@@ -48,20 +48,20 @@
                 <option value='pt'>Portugese</option>
               </select>
               <p>Gender</p>
-              <select id='gender'>
+              <select id='gender' required>
                 <option value='Male'>Male</option>
                 <option value='Female'>Female</option>
                 <option value='Other'>Other</option>
               </select>
               <p>Sexual Orientation</p>
-              <select id='orientation'>
+              <select id='orientation' required>
                 <option value='Male'>Attracted mainly to Males</option>
                 <option value='Female'>Attracted mainly to Females</option>
                 <option value='Bisexual'>Bisexual</option>
                 <option value='Other'>Other</option>
               </select>
               <p>Religion</p>
-              <select id='religion'>
+              <select id='religion' required>
                 <option value='Agnostic'>Agnostic</option>
                 <option value='Atheist'>Atheist</option>
                 <option value='Buddhist'>Buddhist</option>
@@ -72,7 +72,7 @@
                 <option value='Other Faith'>Other Faith</option>
               </select>
               <p>Age</p>
-              <input type="number" name="age" id="age" min="0" max="110" step="1">
+              <input type="number" name="age" id="age" min="0" max="110" step="1" required>
               <p>Twitter Account Name (If you have one)</p>
               <input type="text" id="twitter">
               <br>

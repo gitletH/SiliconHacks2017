@@ -39,10 +39,15 @@ $(document).ready(function() {
 		gender = $('#gender').val();
 		orientation = $('#orientation').val();
 		$('#ethnicity').find('input').each(function(index, el) {
-			if(el.prop('checked'))
+			if($(el).prop('checked'))
 				ethnicity += el.attr('value') + ', ';
 		});
 		ethnicity.slice(ethnicity.length -2);
 		twitter = $('#twitter').val();
+		if(twitter.substring(0, 1) !== "@")
+		{
+			twitter = "@" +twitter;
+		}
+		
 	})
 });
