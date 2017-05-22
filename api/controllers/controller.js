@@ -5,9 +5,11 @@ process.env = require('dotenv-safe').load().parsed;
 var cloudantURL = "https://" + process.env.CLOUDANT_USER + ":" + process.env.CLOUDANT_PSWD + "@" + process.env.CLOUDANT_HOST + ".cloudant.com";
 var Cloudant = require('cloudant'),
   cloudant = Cloudant({
-    url: cloudantURL
+    account: process.env.CLOUDANT_HOST,
+    key: process.env.CLOUDANT_USER, 
+    password: process.env.CLOUDANT_PSWD
   }),
-  db = cloudant.db.use("users"),
+  users = cloudant.db.use("users"),
   queue = cloudant.db.use("queue");
 
 var PersonalityInsightsV3 = require('watson-developer-cloud/personality-insights/v3');
@@ -33,7 +35,7 @@ var counter = 0;
 var createDocument = function(newUser, callback) {
   console.log("Creating document 'mydoc'");
   // we are specifying the id of the document so we can update and delete it later
-  db.insert(newUser, function(err, data) {
+  users.insert(newUser, function(err, data) {
     console.log("Error:", err);
     console.log("Data:", data);
     callback(err, data);
@@ -45,8 +47,8 @@ exports.get_user = function(req, res) {
   var username = req.params.username;
   var password = req.params.password;
 
-  //if db contains username, check password
-  db.find({
+  //if users contains username, check password
+  users.find({
     "selector": {
       "$and": [{
           "username": username
