@@ -22,7 +22,7 @@ $(document).ready(function() {
       religion: window.localStorage.getItem('Religion'),
       orientation: window.localStorage.getItem('Sexual Orientation')
     };
-    $('#connect').attr('disabled', '')
+    $('#connect').attr('disabled', true)
     $.ajax({
       type: 'POST',
       url: 'https://cit-i-zen.herokuapp.com:443/match_text/',
@@ -69,7 +69,7 @@ $(document).ready(function() {
       call()
     })
     // Send a chat message to all active connections.
-    $('#chatinput').submit(function(e) {
+    $('#send').on('click', function(e) {
       e.preventDefault();
       // For each active connection, send the message.
       var msg = $('#text').val();
@@ -125,7 +125,9 @@ $(document).ready(function() {
 
 function enableFeatures() {
   $('#connect').text('Connection Found')
-  $('#connect').attr('disabled', '')
+  $('#connect').attr('disabled', true)
+  $('#close').removeAttr('disabled')
+  $('#close').text('Close Connection') 
   $('#call').removeAttr('disabled')
   $('#call').text('Videocall')
   $('#send').removeAttr('disabled')
@@ -134,17 +136,19 @@ function enableFeatures() {
 
 
 function disableFeatures() {
-  $('#call').attr('disabled', '')
+  $('#call').attr('disabled', true)
   $('#call').text('Connect First before calling')
-  $('#send').attr('disabled', '')
+  $('#send').attr('disabled', true)
   $('#send').text('Connect First before messaging')
+  $('#close').attr('disabled', true)
+  $('#close').text('No Connections to Close') 
   $('#connect').removeAttr('disabled')
   $('#connect').text('Connect')
 }
 
 function findmatch() {
   disableFeatures();
-  $('#match').attr('disabled', '')
+  $('#match').attr('disabled', true)
   //output twitter data
   $('#hobbies').html('<p>Analyzing twitter accounts...</p>')
   $.ajax({
