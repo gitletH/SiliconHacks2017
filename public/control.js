@@ -54,13 +54,15 @@ $(document).ready(function() {
       setUpChatBox(data.id, data.lang)
     })
     
-    // Close a connection.
+    // Close connections.
     $('#close').click(function() {
       if(peer)
       {
         peer.destroy(true);
       }
       $('.connection').empty();
+      for(var a of connectedPeers)
+        a = false;
       socket.close();
       disableFeatures();
       mediapromise = null;
@@ -213,7 +215,7 @@ socket.on('chat', function(data) {
 });
 
 socket.on('kill', function(data) {
-    alert(data + ' has left the chat.');
+    console.log(data + ' has left the chat.');
     $('.connection').filter(function(){return $(this).attr('id') === data}).remove();
     connectedPeers[data] = false;
     disableFeatures();
