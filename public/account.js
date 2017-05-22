@@ -20,7 +20,8 @@ $(document).ready(function() {
 	var username = '';
 	var password = '';
 	$('#advance').on('click', function(event) {
-		
+		username = $('#username').val()
+		password = $('#password').val()
 		advance();
 	});
 
