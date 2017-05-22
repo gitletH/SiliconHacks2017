@@ -36,7 +36,7 @@ $(document).ready(function() {
 			if($(el).prop('checked'))
 				c += $(el).prop('value') + ', ';
 		});
-		c.slice(0, -2);
+		c = c.slice(0, -2);
 		var t = $('#twitter').prop('value');
 		if(t.substring(0, 1) !== "@")
 		{
@@ -63,7 +63,8 @@ $(document).ready(function() {
 			login(user, pass)
 		},
 		error: function(err){
-			console.log("could not make user");
+			console.log(err);
+			alert("Database Error")
 			window.location.replace("login.html");
 		}
 		});
