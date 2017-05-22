@@ -111,7 +111,7 @@ var connect = function(reqbody, res) {
     else
     {
       console.log('database found match')
-      queue.destroy(match.docs.[0]._id, match.docs[0]._rev, function(err, body){
+      queue.destroy(match.docs[0]._id, match.docs[0]._rev, function(err, body){
         if(err)
           return res.status(501).send('Database error')
         return res.json({id: match.docs[0].socket})
