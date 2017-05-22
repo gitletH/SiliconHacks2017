@@ -19,13 +19,6 @@ function advance() {
 $(document).ready(function() {
 	var username = '';
 	var password = '';
-	var language = '';
-	var ethnicity = '';
-	var religion = '';
-  	var gender = '';
-	var orientation = '';
-  	var age = 0;
-  	var twitter = '';
 	$('#advance').on('click', function(event) {
 		username = $('#username').val()
 		password = $('#password').val()
@@ -33,21 +26,22 @@ $(document).ready(function() {
 	});
 	$('#bginfo').submit(function(e){
 		e.preventDefault();
-		age = $('#age').val();
-		language = $('#language').val();
-		religion = $('#religion').val();
-		gender = $('#gender').val();
-		orientation = $('#orientation').val();
+		var age = $('#age').prop('value');
+		var language = $('#language').prop('value');
+		var religion = $('#religion').prop('value');
+		var gender = $('#gender').prop('value');
+		var orientation = $('#orientation').prop('value');
+		var ethnicity = '';
 		$('#ethnicity').find('input').each(function(index, el) {
 			if($(el).prop('checked'))
-				ethnicity += el.attr('value') + ', ';
+				ethnicity += $(el).prop('value') + ', ';
 		});
 		ethnicity.slice(ethnicity.length -2);
-		twitter = $('#twitter').val();
+		var twitter = $('#twitter').prop('value');
 		if(twitter.substring(0, 1) !== "@")
 		{
 			twitter = "@" +twitter;
 		}
-		
+
 	})
 });
