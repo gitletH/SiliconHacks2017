@@ -68,11 +68,11 @@ exports.get_match_text = function(req, res){
   queue.find({
     "selector":{
       "$not":{
-        "ethnicity": reqbody.ethnicity,
-        "gender": reqbody.gender,
-        "age": reqbody.age,
-        "religion": reqbody.religion,
-        "sexual Orientation": reqbody.orientation
+        "ethnicity": req.body.ethnicity,
+        "gender": req.body.gender,
+        "age": req.body.age,
+        "religion": req.body.religion,
+        "sexual Orientation": req.body.orientation
 //      ,"Interests": 
       }
     },
@@ -85,12 +85,12 @@ exports.get_match_text = function(req, res){
     {
       console.log('database waiting for match')
       queue.insert({
-        "ethnicity": reqbody.ethnicity,
-        "gender": reqbody.gender,
-        "age": reqbody.age,
-        "religion": reqbody.religion,
-        "sexual Orientation": reqbody.orientation,
-        "socket": reqbody.socketid,
+        "ethnicity": req.body.ethnicity,
+        "gender": req.body.gender,
+        "age": req.body.age,
+        "religion": req.body.religion,
+        "sexual Orientation": req.body.orientation,
+        "socket": req.body.socketid,
         "position": counter
       }, function(err, body){
         if(err)
