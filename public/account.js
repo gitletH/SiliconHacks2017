@@ -17,7 +17,11 @@ function advance() {
 	$('#background').toggle(600);
 }
 $(document).ready(function() {
+	var username = '';
+	var password = '';
 	$('#advance').on('click', function(event) {
+		
 		advance();
 	});
+
 });
