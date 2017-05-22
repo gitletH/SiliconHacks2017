@@ -43,6 +43,6 @@ $(document).ready(function() {
 				ethnicity += el.attr('value') + ', ';
 		});
 		ethnicity.slice(ethnicity.length -2);
-		twitter = $('#twitter').val().;
+		twitter = $('#twitter').val();
 	})
 });
