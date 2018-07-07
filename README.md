@@ -8,7 +8,7 @@ It aims to eliminate prejudice by encouraging the communication between people f
 
 ```
 npm install
-npm run
+npm start
 ```
 
 Then go to `localhost:3000`
