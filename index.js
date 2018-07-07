@@ -11,7 +11,8 @@ app.use(bodyParser.json());
 var routes = require('./api/routes/routes.js');
 routes(app);
 app.use(express.static(__dirname + '/public'));
-server.listen(process.env.PORT || port);
+port = process.env.PORT || port;
+server.listen(port);
 
 console.log("working on " + process.env.PORT);
 var counter = 0;
